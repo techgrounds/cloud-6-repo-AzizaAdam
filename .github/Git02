@@ -1,0 +1,29 @@
+Git02 opdracht
+Git en Markdown
+Introduction:
+Git is a VCS that works best with plain text files. Programs like Word, Pages etc, store their documents in structures that are not git-friendly. Or rather: not GitHub-friendly. Git doesn't really care what you store in it.
+
+GitHub has implemented MarkDown that allows documentation to be written in plain text. Markdown is an open source Markup Language. Markup Languages are intended to indicate how text should be displayed. HTML is also part of this family of languages.
+
+Markup is simple to use. You can open a markup file in notepad and it is still readable. But with the power of open source, there are also many editors that can give a live render.
+
+MarkDown is a What You See Is What You Mean (WYSIWYM) of working with text. GitHub ultimately determines the formatting of your text. You only provide the text and what it contains are headings, lists, and paragraphs.
+
+People with write permissions for a repository can set the Markdown processor for a GitHub Pages site.
+
+GitHub Pages supports two Markdown processors: kramdown and GitHub's own Markdown processor, which is used to render GitHub Flavored Markdown (GFM) throughout GitHub. For more information, see "About writing and formatting on GitHub.
+
+Important terms and keywords:
+Markdown
+A Readme file is a file that describes the purpose of the repository and gives hints on what the code does, how to compile/use it, etc. The . md extension stands for Markdown, which is a type of file that is both readable in plain text, but can also be easily converted to HTML to display special elements.
+
+
+Sources used:
+https://stackoverflow.com/questions/31848181/what-does-the-readme-md-file-in-git-repo-do/31848233
+https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/setting-a-markdown-processor-for-your-github-pages-site-using-jekyll
+https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/setting-a-markdown-processor-for-your-github-pages-site-using-jekyll
+
+
+
+
+
