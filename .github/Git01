@@ -1,0 +1,32 @@
+Github
+Definition of GitHub:
+Is a provider of Internet hosting for software development and version control using Git. It offers the distributed version control and source code management (SCM) functionality of Git, plus its own features. Github is cloud based repository hosting service platform with great open source community. Github solves problems like increase  workflow visibility and decrease redundancy.
+It represents a shared platform for non tech users and developers to jointly work (collaboration) and used for source code management in software development. The code is easily visible to any organization and you can contribute to it.
+
+Terms and keywords:
+Git Repository
+A Git repository tracks and saves the history of all changes made to the files in a Git project. It saves this data in a directory called .git, also known as the repository folder.
+Git uses a version control system to track all changes made to the project and save them in the repository. Users can then delete or copy existing repositories or create new ones for ongoing projects.
+Push Request
+The git push command is used to transfer or push the commit, which is made on a local branch in your computer to a remote repository like GitHub.
+Pull Request
+If you make a change in a repository, GIT PULL can allow others to view the changes. It is used to acknowledge the change that you've made to the repository that you're working on. Or also called a target repository.
+Fork the Repository
+"The "Fork" is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project.
+Merge methods on GitHub
+•	Squashing your merge commits
+•	Rebasing and merging your commits
+You can allow contributors with push access to your repository to merge their pull requests on GitHub.com with different merge options or enforce a specific merge method for all of your repository's pull requests.
+
+Sources used in the search:
+
+https://phoenixnap.com/kb/what-is-a-git-repository
+https://en.wikipedia.org/wiki/GitHub
+https://docs.github.com/en/actions/learn-github-actions
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
+https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github
+https://www.datacamp.com/community/tutorials/git-push-pull
+
+
+
+
