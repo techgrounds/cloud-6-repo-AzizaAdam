@@ -8,14 +8,32 @@ Some actions require (root) permissions.
 
 Users, passwords, and groups are all stored in  (different) files across the system.
 Requirements:
-Your CentOS VM
-Exercise:
-Create a new user in your VM. 
-The new user should be part of an admin group that also contains the user you created during installation.
-The new user should have a password.
-The new user should be able to use ‘sudo’
-Locate the files that store users, passwords, and groups. See if you can find your newly created user’s data in there.
+In Linux, a 'group' is a collection of users. The main purpose of 'groups' is to define a set of permissions (privileges) such as read, write or execute permissions for a given resource that can be shared with the users within the group. Users can be added to an existing group to use the privileges it grants.  
 
+ 
+
+Key terms 
+
+Root user  
+
+The root user, also known as the superuser or administrator (administrator), is a special user account in Linux used for system administration. It is the most privileged user on the Linux system and it has access to all commands and files. 
+
+ 
+
+Root permissions  
+
+The root permissions stand for having full permission to read(r), write (w) and execute(x) any file. sudo = "Super User DO" sudo command in Linux is generally used as a prefix of a command that only superuser is allowed to execute. If you prefix "sudo" with a command, it will run that command with elevated privileges or in other words allow a user  to run a command as another user, such as the superuser.  
+
+ 
+
+Assignment  
+
+Create a new user in your VM. The new user must belong to an administrator group (admingroup) that also contains the user you created during installation. The new user must have a password. The new user must be able to use 'sudo'. Locate the files where users, passwords, and groups are stored. See if you can find your newly created user's details there. 
+
+
+Link to the results of this exercise
+
+ https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/01_Linux_1/Lnx05-users-and-groups/IMG_20211208_224638.jpg
 
 
 
