@@ -54,7 +54,8 @@ Elke regio heeft een maximale capaciteit. Dit kan van invloed zijn op welke type
 Beperkingen: 
 Er worden bepaalde beperkingen gesteld aan de implementatie van services in bepaalde regio's. Sommige regio's zijn bijvoorbeeld alleen beschikbaar als back-up- of failoverdoel. Andere beperkingen die belangrijk zijn om op te merken, zijn vereisten op het gebied van gegevenssoevereiniteit.
 Soevereiniteit: 
-Bepaalde regio's zijn toegewijd aan specifieke soevereine entiteiten. Hoewel alle regio's Azure-regio's zijn, zijn deze soevereine regio's volledig geïsoleerd van de rest van Azure. Ze worden niet noodzakelijkerwijs beheerd door Microsoft en zijn mogelijk beperkt tot bepaalde typen klanten. Deze soevereine regio's zijn: Azure China 21Vianet, Azure Duitsland, Azure Amerikaanse overheid
+Bepaalde regio's zijn toegewijd aan specifieke soevereine entiteiten. Hoewel alle regio's Azure-regio's zijn, zijn deze soevereine regio's volledig geïsoleerd van de rest van Azure. Ze worden niet noodzakelijkerwijs beheerd door Microsoft en zijn mogelijk beperkt tot bepaalde typen klanten. Deze soevereine regio's zijn: Azure China 21Vianet, Azure Duitsland, Azure Amerikaanse overheid.
+Als u gaat kiezen eerst speed test uitvoeren om de snelste regio te bepalen, dan ook ga checken welke producten zijn beschikbaar voor u dan kan u een beslising maken welke regio te gaan keizen.
 
 
 
