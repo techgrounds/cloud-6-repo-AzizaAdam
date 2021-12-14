@@ -14,24 +14,21 @@ Goed info search
 
 Bestudeer:
  
-•	Wat is een Azure Region?
+Key-tems:
+
+Azure Region
 Azure-regio's: zijn groepen datacenters die zijn verbonden met netwerken en vertegenwoordigen de infrastructuur van de cloud. Azure heeft meer dan 50 regio's die verschillende gebieden in de wereld bestrijken, de VS, de EU, Afrika, Azië enz. Tussen de datacenter of a regie is low-latency network van <2 millisec.). Er zijn ook speciale regio's, overheidsregio's (Amerikaanse overheid) en partnerregio's (China)
 
 
-
-
-
-•	Wat is een Azure Availability Zone?
- 
-
-
+•	Azure Availability Zone
 Availability zones: Zijn fysiek geschiedend locaties binnen elke Azure-regio die tolerant zijn voor lokale fouten. Storingen kunnen variëren van software- en hardwarestoringen tot gebeurtenissen zoals aardbevingen, overstromingen en branden. Tolerantie voor fouten wordt bereikt vanwege redundantie en logische isolatie van Azure-services. Om de tolerantie te garanderen, zijn er minimaal drie afzonderlijke beschikbaarheidszones aanwezig in alle regio's waarvoor beschikbaarheidszones zijn ingeschakeld.
 
 Azure-beschikbaarheidszones zijn verbonden door een krachtig netwerk met een retourlatentie van minder dan 2 ms. Ze helpen uw gegevens gesynchroniseerd en toegankelijk te houden wanneer er iets misgaat. Elke zone bestaat uit een of meer datacenters die zijn uitgerust met onafhankelijke stroom-, koeling- en netwerkinfrastructuur. Beschikbaarheidszones zijn zo ontworpen dat als één zone wordt getroffen, regionale services, capaciteit en hoge beschikbaarheid worden ondersteund door de overige twee zones.
 
 
-•	Wat is een Azure Region Pair?
+•	Azure Region Pair
 Regio's zijn gekoppeld voor replicatie tussen regio's op basis van nabijheid en andere factoren.
+
 
 Advantages of region pairing:
 Region recovery sequence: 
@@ -54,7 +51,7 @@ Elke regio heeft een maximale capaciteit. Dit kan van invloed zijn op welke type
 Beperkingen: 
 Er worden bepaalde beperkingen gesteld aan de implementatie van services in bepaalde regio's. Sommige regio's zijn bijvoorbeeld alleen beschikbaar als back-up- of failoverdoel. Andere beperkingen die belangrijk zijn om op te merken, zijn vereisten op het gebied van gegevenssoevereiniteit.
 Soevereiniteit: 
-Bepaalde regio's zijn toegewijd aan specifieke soevereine entiteiten. Hoewel alle regio's Azure-regio's zijn, zijn deze soevereine regio's volledig geïsoleerd van de rest van Azure. Ze worden niet noodzakelijkerwijs beheerd door Microsoft en zijn mogelijk beperkt tot bepaalde typen klanten. Deze soevereine regio's zijn: Azure China 21Vianet, Azure Duitsland, Azure Amerikaanse overheid.
+Bepaalde regio's zijn toegewijd aan specifieke soevereine entiteiten. Hoewel alle regio's Azure-regio's zijn, zijn deze soevereine regio's volledig geïsoleerd van de rest van Azure. Ze worden niet noodzakelijkerwijs beheerd door Microsoft en zijn mogelijk beperkt tot bepaalde typen klanten. Deze soevereine regio's zijn: Azure China 21Vianet, Azure Duitsland, Azure Amerikaanse overheid. 
 Als u gaat kiezen eerst speed test uitvoeren om de snelste regio te bepalen, dan ook ga checken welke producten zijn beschikbaar voor u dan kan u een beslising maken welke regio te gaan keizen.
 
 
