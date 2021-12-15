@@ -15,15 +15,12 @@ Hyper-V
 ## Opdracht
 
 Install a Linux virtual machine on your laptop.
-![screenshot Desktop](../00_includes/LNX/InstallUbuntu.png)
-![screenshot Desktop](../00_includes/LNX/InstallUbuntu2.png)
-![screenshot Desktop](../00_includes/LNX/InstallUbuntu3.png)
+![screenshot Desktop](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx01/Installation%20of%20Lnx%20ubuntu%20VM.jpg)
+![screenshot Desktop](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx01/Installation%20of%20Lnx%20ubuntu%20VM.jpg)
 
-Once installation and setup are complete, take a snapshot of the VM. This will act as a checkpoint in case you break the machine on accident (or on purpose).
-![screenshot Desktop](../00_includes/LNX/InstallUbuntu5.png)
 
 Go to the terminal in your VM and type ‘whoami’. The terminal should show your username
-![screenshot Desktop](../00_includes/LNX/InstallUbuntu4.png)
+![screenshot Desktop](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx01/Connection%20with%20terminal%20to%20the%20VM.jpg)
 
 ### Gebruikte bronnen
 
