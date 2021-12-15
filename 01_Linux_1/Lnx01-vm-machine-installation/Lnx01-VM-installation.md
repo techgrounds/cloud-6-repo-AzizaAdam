@@ -1,16 +1,16 @@
-# VM Installeren
+# Installatie van een ubuntu Linux VM
 
 Ubuntu Linux VM draaien op Windows 11.
 
 ## Key-terms
 
-WSL(2)
+WSL2
 
-- Microsoft introduceerde Windows Subsystem for Linux 2 bij de Windows 10 May 2020 Update van begin dit jaar. Met het subsysteem richt Microsoft zich op ontwikkelaars die bijvoorbeeld Linux-tools binnen Windows willen gebruiken. In plaats van op een relatief eenvoudige compatibiliteitslaag, zoals bij WSL1, is de tweede versie gebaseerd op een virtuele machine waarbinnen een door Microsoft zelf ontwikkelde opensource-Linux-kernel en de usermode van Linux draaien. Microsoft werkt eraan om Linux-bestanden binnen WSL vanuit de Verkenner te kunnen openen.
+- is Microsoft Windows Subsystem for Linux 2 met deze tool kan je Linux gebruiken in Windows omgeving.
 
-Hyper-V
+Hypervisor 1&2
 
-- Hyper-V is een native hypervisor van Microsoft voor virtualisatie. Met de software kan men virtuele machines creëren op x86-64-systemen, waarop vervolgens Windows kan draaien. De term 'native' wil zeggen dat er geen besturingsysteem tussen ligt, hierdoor kunnen er meer bronnen, zoals werkgeheugen, aan de virtuele machines toegewezen worden. Dit type hypervisor wordt dan vooral ook gebruikt voor servers.
+- is een software gebruikt voor virtualisatie, Hypervise 2 kan je zelf de OS kiezen voor je servers.
 
 ## Opdracht
 
@@ -28,7 +28,6 @@ Go to the terminal in your VM and type ‘whoami’. The terminal should show yo
 
 <https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v>
 
-<https://nl.wikipedia.org/>
 
 ### Ervaren problemen
 
