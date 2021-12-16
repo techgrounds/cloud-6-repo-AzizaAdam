@@ -1,6 +1,6 @@
 
-Azure Core Services
-Introductie:
+## Azure Core Services
+## Introductie:
 Je kan dit document zien als een soort gids naar je AZ-900 certificering. Hierin staan de services die je in wat meer detail moet kennen. Ook beschrijft dit document hoe je moet omgaan met de andere services die je in het (oefen)examen tegen kan komen.
 
 Er zijn veel services in Azure, maar sommige zijn belangrijker dan andere. Azure noemt de volgende architectural components en services  waarvan je redelijk in-depth van moet weten wat ze doen:
@@ -37,4 +37,5 @@ Naast de services kan je ook vragen verwachten over verschillende cloud concepte
 Bestudeer:
 •	Het Skills Measured document voor Microsoft Azure Fundamentals (AZ-900_)
 
-Resources
+## Bronnen 
+
