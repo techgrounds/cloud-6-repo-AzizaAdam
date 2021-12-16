@@ -17,6 +17,9 @@ Maak een file met een txt, ook maak een directory die techgrounds genoemd
 ## Bronnen
 https://cheatography.com/davechild/cheat-sheets/linux-command-line/
 
+https://www.howtogeek.com/199687/how-to-quickly-create-a-text-file-using-the-command-line-in-linux/
+
+https://www.geeksforgeeks.org/absolute-relative-pathnames-unix/
 
 ## Ervaren problemen
 Geen
