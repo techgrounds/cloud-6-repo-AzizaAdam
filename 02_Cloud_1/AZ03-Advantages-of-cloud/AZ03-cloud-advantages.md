@@ -1,13 +1,15 @@
 
-Advantages of the cloud
-Introductie:
+## Advantages of the cloud
+## Introductie:
 Azure noemt 6 voordelen van cloud computing. Dit zijn basiseigenschappen die de cloud interessant maken voor bedrijven. Houd er rekening mee dat dit gelijk ook een marketing tool is om Azure te introduceren aan nieuwe klanten. Daarom is het ook een belangrijk onderdeel van het AZ-900 examen.
 
-Key-terms:
+## Key-terms:
 
 •	High Availability
-•	Afhankelijk van de service-level agreement (SLA)
-•	Schaalbaarheid is het vermogen van een systeem om verhoogde belasting aan te kunnen. Services die onder Azure Autoscale vallen, kunnen automatisch worden geschaald om aan de vraag te voldoen om aan de werkbelasting te voldoen. Deze services worden uitgeschaald om de capaciteit tijdens pieken in de werkbelasting te garanderen en automatisch weer normaal te worden wanneer de piek daalt.
+Afhankelijk van de service-level agreement (SLA)
+
+•	Schaalbaarheid:
+Is het vermogen van een systeem om verhoogde belasting aan tekunnen. Services die onder Azure Autoscale vallen, kunnen automatisch worden geschaald om aan de vraag te voldoen om aan de werkbelasting te voldoen. Deze services worden uitgeschaald om de capaciteit tijdens pieken in de werkbelasting te garanderen en automatisch weer normaal te worden wanneer de piek daalt.
 
 
 •	Scalability
@@ -30,12 +32,9 @@ Als zich een geografische storing voordoet, krijgt herstel van één regio prior
 
 Azure maakt gebruik van een consumption-based model. Dat wil zeggen dat je alleen betaalt voor de resources die je gebruikt. Hierdoor wordt Capital Expenditure (CapEx) vervangen voor Operational Expenditure (OpEx).
 
-Bestudeer:
-•	De 6 advantages of the cloud
-•	Het consumption-based model
 
 
-Resources:
+## Bronnen:
 https://www.youtube.com/watch?v=NKEFWyqJ5XA
 https://azure.microsoft.com/nl-nl/blog/data-management-gateway-high-availability-and-scalability-preview/
 https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/may/patterns-for-high-availability-scalability-and-computing-power-with-microsoft-azure
