@@ -17,6 +17,7 @@ Hypervisor 1&2
 
 Install a Linux virtual machine on your laptop.
 ![screenshot Desktop](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx01/Installation%20of%20Lnx%20ubuntu%20VM.jpg)
+![screenshot connection to the VM] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx01/Connection%20with%20terminal%20to%20the%20VM.jpg)
 
 ## Bronnen
 
