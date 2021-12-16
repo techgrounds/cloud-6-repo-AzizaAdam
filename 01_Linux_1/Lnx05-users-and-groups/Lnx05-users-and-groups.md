@@ -4,24 +4,30 @@ Linux heeft gebruikers, vergelijkbaar met accounts op Windows en MacOS. Elke geb
 Er is een speciale gebruiker genaamd 'root'. Root mag alles doen.
 Om tijdelijke root-rechten te krijgen, kun je 'sudo' typen voor een opdracht, maar dat werkt alleen als je dat mag doen. Voor sommige acties zijn (root)rechten vereist.
 Gebruikers, wachtwoorden en groepen worden allemaal opgeslagen in (verschillende) bestanden verspreid over het systeem.
+
 ##Key-terms
 Root user:
 De rootgebruiker, ook bekend als de superuser, is een speciale gebruikersaccount in Linux die wordt gebruikt voor systeembeheer. Root user heeft vol-toegang op het Linux-systeem tot alle opdrachten en bestanden.
-
 Root permissions:
 De root permissions staan voor het hebben van volledige toestemming om elk bestand te lezen(r, read), te schrijven (w, write) en uit te voeren(x, execute).
 sudo = "Super User DO"
 sudo commando in Linux wordt over het algemeen gebruikt als een voorvoegsel van een commando dat alleen superuser mag uitvoeren. 
 
 ##Opdracht
+
 	Maak een nieuwe user in uw VM.
+	
 	De nieuwe user moet deel uitmaken van een beheerdersgroep(admingroup) die ook de gebruiker bevat die u tijdens de installatie hebt gemaakt.
+	
 	De nieuwe user moet een wachtwoord hebben.
+	
 	De nieuwe user moet 'sudo' kunnen gebruiken.
+	
 	Zoek de bestanden waarin gebruikers, wachtwoorden en groepen worden opgeslagen. Kijk of u de gegevens van uw nieuw gemaakte gebruiker daar kunt vinden.
 
 	![screenshot1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx05/IMG_20211210_120416.jpg)
 	![screenshot2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx05/IMG_20211210_120506.jpg)
+
 
 ##Bronnen
 https://www.youtube.com/watch?v=JTtE5Iy-0jI
