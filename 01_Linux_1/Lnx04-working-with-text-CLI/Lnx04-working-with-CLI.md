@@ -28,7 +28,7 @@ https://www.geeksforgeeks.org/linux-operating-system-cli-command-line-interface-
 
 
 ##Problemen
-Het was even uitzoeken waarom sommige commands niet uitvoerbaar zijn als normale user in de terminal, maar naar het omschakelen naar de root user werd de opdracht uitvoerbaar.
+Geen.
 
 
 ##Resultaten
