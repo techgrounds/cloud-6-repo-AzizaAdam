@@ -16,6 +16,7 @@ Hypervisor 1&2
  ## Opdracht
 
 Install a Linux virtual machine on your laptop.
+![screenshot Desktop](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx01/Installation%20of%20Lnx%20ubuntu%20VM.jpg)
 ![screenshot1](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx02/IMG_20211208_152718%20(1).jpg)
 ![screenshot2](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx02/IMG_20211208_185452.jpg)
 ![screenshot3](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx02/IMG_20211208_192035.jpg)
