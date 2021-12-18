@@ -36,30 +36,23 @@ Azure Managed Disk
 Azure shared disc concnept
 ![screenshot shared disc concept](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/AZ07%20shareddisc%20concept.jpg)
 
-
 Attaching shared disc to VM4
-![screenshot disc in VM4] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-attaching%20and%20mounting%20disc%20in%20VM4.jpg)
-
+![screenshot shared disc to VM4]( (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-attaching%20and%20mounting%20disc%20in%20VM4.jpg)
 
 Attaching shared disc to VM5
 ![screenshot shared disc to VM5](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-attaching%20and%20mounting%20disc%20in%20VM5.jpg)
 
-
 Adding a shared txt file in the shared disc by VM4:
 
-![screenshot shared text file VM4] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-making%20shared%20txt%20file%20via%20VM4.jpg)
+![screenshot shared txt file by VM4](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-making%20shared%20txt%20file%20via%20VM4.jpg)
 
+![screenshot reading shared txt file by VM5]( (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-readingthe%20shared%20txt%20file%20via%20VM5.jpg)
 
-![screenshot reading the shared text file by VM5] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-readingthe%20shared%20txt%20file%20via%20VM5.jpg)
+![screenshot making snapshot shared disc](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/AZ07-Snapshot%20disc5.jpg)
 
+![screenshot making new disc from snapshot](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/AZ07%20new%20disc%20from%20snapshot.jpg)
 
-![screenshot making snapshot shared disc] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/AZ07-Snapshot%20disc5.jpg)
-
-
-![screenshot new disc from the snapshot] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/AZ07%20new%20disc%20from%20snapshot.jpg)
-
-
-![screenshot reading the shared text file from the new disc] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-reading%20the%20shared%20txt%20file%20from%20the%20new%20disc.jpg)
+![screenshot reading the txt file from the new disc](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-reading%20the%20shared%20txt%20file%20from%20the%20new%20disc.jpg)
 
 
 ## Problemen
