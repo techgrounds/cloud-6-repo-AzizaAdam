@@ -33,6 +33,8 @@ Er zijn veel services in Azure, maar sommige zijn belangrijker dan andere. Azure
 Natuurlijk zijn er veel meer services die mogelijk op je examen komen. Voor deze services is het genoeg om bekend te zijn met de product page (zie hier een voorbeeld van een Azure product page)
 
 
+![screenshot Azure core services](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ04/AZ04-Azure%20core%20services.jpg)
+
 Naast de services kan je ook vragen verwachten over verschillende cloud concepten, zoals High Availability, het consumption-based pricing model en het shared responsibility model.
 Bestudeer:
 •	Het Skills Measured document voor Microsoft Azure Fundamentals (AZ-900_)
