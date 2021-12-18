@@ -1,12 +1,14 @@
 
-##Azure Disk Storage
-##Introductie:
+##Azure Disk Storage  
+
+##Introductie:  
+
 Azure Disk Storage kan gezien worden als een virtual hard drive in de cloud. Een disk kan een OS disk (waar het OS op staat) of een Data Disk (te vergelijken met een externe harde schijf) zijn. Je hebt een keuze tussen Managed Disks en Unmanaged Disks. Unmanaged Disks zijn goedkoper, maar je hebt er wel een Storage Account nodig (en je moet de disk dus zelf managen). Managed Data Disks kunnen gedeeld worden tussen meerdere VMs, maar dat is een relatief nieuwe feature en er zitten wat haken en ogen aan.
 
 Backups van een Managed Disk kan je maken met Incremental Snapshots die alleen de aanpassingen sinds de laatste snapshot opslaan. Voor een Unmanaged Disk kan je alleen een ‘normale’ snapshot maken.
 
 Er zijn 4 typen managed disks. Over het algemeen kan je zeggen dat meer performance zorgt voor hogere kosten:
-bron: https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types
+
 Detail	Ultra Disk	Premium SSD	Standard SSD	Standard HDD
 Disk Type	SSD	SSD	SSD	HDD
 Scenario	IO-intensive workloads, such as SAP HANA, top tier databases (for example, SQL Oracle), and other transaction-heavy workloads	Production and performance sensitive workloads	Web servers, lightly used enterprise applications and dev/test	Backup, non-critical, infrequent access
@@ -38,11 +40,15 @@ Azure shared disc concnept
 Attaching shared disc to VM4
 ![screenshot disc in VM4] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-attaching%20and%20mounting%20disc%20in%20VM4.jpg)
 
+
 Attaching shared disc to VM5
-![screenshot Desktopshared disc to VM5](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-attaching%20and%20mounting%20disc%20in%20VM5.jpg)
+![screenshot shared disc to VM5](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-attaching%20and%20mounting%20disc%20in%20VM5.jpg)
+
 
 Adding a shared txt file in the shared disc by VM4:
+
 ![screenshot shared text file VM4] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-making%20shared%20txt%20file%20via%20VM4.jpg)
+
 
 ![screenshot reading the shared text file by VM5] (https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ07/Az07-readingthe%20shared%20txt%20file%20via%20VM5.jpg)
 
@@ -70,5 +76,6 @@ https://www.youtube.com/watch?v=u8qtTNorRts
 https://www.youtube.com/watch?v=LAFjTUudNCY
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal
+https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types
 
 
