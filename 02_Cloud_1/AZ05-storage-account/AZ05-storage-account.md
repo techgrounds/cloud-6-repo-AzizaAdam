@@ -34,6 +34,7 @@ Platform as a service
 Geen
 
 ## Bronnen
+https://docs.microsoft.com/en-us/search/?terms=storage+account&category=
 
 
 

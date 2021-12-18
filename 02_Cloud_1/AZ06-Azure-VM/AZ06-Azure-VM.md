@@ -80,7 +80,7 @@ Geen
 ## Conclusies:
 We hebben een ubuntu(20.04/ gen 1) VM in Azure gerunt en apache2 server geinstalleert en laten runnen op port 80.
 
-Resources:
+## Bronnen:
 https://docs.microsoft.com/nl-nl/azure/virtual-machines/windows/overview
 https://jumpcloud.com/blog/rdp-ssh
 

@@ -40,4 +40,5 @@ Bestudeer:
 •	Het Skills Measured document voor Microsoft Azure Fundamentals (AZ-900_)
 
 ## Bronnen 
-
+Skills Measured document:
+https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE3VwUY https://azure.microsoft.com/en-us/support/legal/offer-details/ https://azure.microsoft.com/en-us/offers/ms-azr-0003p/ https://azure.microsoft.com/en-us/free/ https://cloudacademy.com/course/understanding-azure-pricing-and-support/azure-subscriptions/ https://docs.microsoft.com/nl-nl/azure/governance/management-groups/overview https://azure.microsoft.com/nl-nl/services/app-service/#overview https://docs.microsoft.com/nl-nl/azure/container-instances/container-instances-overview https://docs.microsoft.com/nl-nl/azure/aks/intro-kubernetes https://docs.microsoft.com/nl-nl/azure/virtual-network/virtual-networks-overview https://docs.microsoft.com/nl-nl/azure/virtual-network/virtual-network-peering-overview https://docs.microsoft.com/nl-nl/azure/expressroute/expressroute-introduction https://docs.microsoft.com/nl-nl/azure/storage/blobs/storage-blobs-overview https://docs.microsoft.com/nl-nl/azure/storage/blobs/access-tiers-overview https://docs.microsoft.com/nl-nl/azure/azure-sql/azure-sql-iaas-vs-paas-what-is-overview https://docs.microsoft.com/nl-nl/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview
