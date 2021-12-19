@@ -29,7 +29,7 @@ New firewall VM
 
 Running apache2 through firewall VM:
 
-![screenshot running apache2 by firewall VM](https://github.com/techgrounds/cloud-6-repoAzizaAdam/blob/main/00_includes/AZ09/AZ09%20apache2%20running%20by%20firewall%20VM.jpg)
+![screenshot running apache2 by firewall VM]( https://github.com/techgrounds/cloud-6-repoAzizaAdam/blob/main/00_includes/AZ09/AZ09%20apache2%20running%20by%20firewall%20VM.jpg)
 
 ![screenshot NGS setting]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ09/AZ09%20firewall%20NSG%20setting.jpg)
 
