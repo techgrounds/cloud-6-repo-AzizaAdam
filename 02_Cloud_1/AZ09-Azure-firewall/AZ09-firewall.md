@@ -18,3 +18,30 @@ Dat Azure Firewall veel meer is dan alleen een firewall
 Zet een webserver aan. Zorg dat de poorten voor zowel SSH als HTTP geopend zijn.
 Maak een Azure Firewall in VNET. Zorg ervoor dat je webserver nog steeds bereikbaar is via HTTP, maar dat SSH geblokkeerd wordt.
 
+
+
+Azure NSG concnept
+![screenshot NSG concept]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ09/AZ09-NSG%20concept.jpg)
+
+
+New firewall VM
+![screenshot New firewall VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ09/AZ09%20firewall%20VM.jpg)
+
+Running apache2 through firewall VM:
+
+![screenshot running apache2 by firewall VM]( https://github.com/techgrounds/cloud-6-repo AzizaAdam/blob/main/00_includes/AZ09/AZ09%20apache2%20running%20by%20firewall%20VM.jpg)
+
+![screenshot NGS setting]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ09/AZ09%20firewall%20NSG%20setting.jpg)
+
+![screenshot SSH connection is denied]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ09/AZ09%20SSH%20connection%20is%20denied.jpg)
+
+![screenshot allowing SSH connection again]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ09/AZ09%20SSH%20is%20allowed.jpg)
+
+![screenshot SSH connection is functional]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ09/AZ09%20firewall%20VM%20is%20connected%20via%20SSH.jpg)
+
+
+## Probleem:
+geen 
+
+## Resultaat:
+Zie screenshots
