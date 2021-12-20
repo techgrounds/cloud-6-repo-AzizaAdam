@@ -14,9 +14,9 @@ Zoek uit hoeveel geheugen de sshd gebruikt.
 Stop of stop het sshd-proces.
 
 
-	![screenshot1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx06/IMG_20211208_232553.jpg)
-	![screenshot2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx06/IMG_20211208_232724.jpg)
-	![screenshot3]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx06/IMG_20211208_233845.jpg
+	![screenshot1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201057.jpg)
+	![screenshot2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201402.jpg)
+	![screenshot3]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201515.jpg)
 
 
 ## Bronnen
@@ -25,7 +25,7 @@ https://www.youtube.com/watch?v=qIVR1OaIUpA
 https://linuxhandbook.com/create-file-linux/#:~:text=1.%20Create%20an%20empty%20file%20using%20touch%20command.,to%20create%20a%20text%20file%20in%20Linux%20terminal.
 
 ## Problemen
-Geen.
+Was een beetje lastig zo moet ik meer info zoeken en youtube video's bekijken
 
 ## Resultaat
 Zie de screenshots
