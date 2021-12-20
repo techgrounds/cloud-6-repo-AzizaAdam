@@ -12,6 +12,11 @@ Hoeveel verantwoordelijkheden bij de klant liggen is ook afhankelijk van wat voo
 De Cloud provider extra biedt extra services aan waarmee je je eigen verantwoordelijkheden makkelijker kan beheren.
 
 
+## Azure Shared Responsibility model:
+
+![screenshot Azure shared respon. model](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10-shared-respon-model/AZ10-shared%20respon.%20model.jpg)
+
+
 ## Key-terms:
 IaaS
 
@@ -31,9 +36,7 @@ SaaS
 ![screenshot Azure SaaS model](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10-shared-respon-model/SaaS.jpg)
 
 
-## Azure Shared Responsibility model:
 
-![screenshot Azure shared respon. model](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ05/Az05%20resource%20group%20and%20storage%20acconut%20.jpg)
 
 
 ## Bronnen:
@@ -44,7 +47,8 @@ https://www.youtube.com/watch?v=9CVBohl6w0Q&list=PLGjZwEtPN7j-Q59JYso3L4_yoCjj2s
 
 
 ## Probleem:
-
+Geen
 
 
 ## Resultaat:
+Zie boven
