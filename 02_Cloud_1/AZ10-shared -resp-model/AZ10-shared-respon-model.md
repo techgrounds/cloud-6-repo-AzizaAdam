@@ -35,7 +35,7 @@ PaaS
 Platform as a Service (PaaS) is een volledige ontwikkel- en implementatieomgeving in de cloud, met bronnen die u in staat stellen alles te leveren, van eenvoudige cloudtoepassingen tot geavanceerde, bedrijfstoepassingen die geschikt zijn voor gebruik in de cloud. PaaS omvat infrastructuur (servers, opslag, netwerken) maar ook middleware, ontwikkelhulpprogramma's, BI-services (Business Intelligence), systemen voor het beheren van databases en meer. PaaS is ontworpen om ondersteuning te bieden tijdens elke fase van de levenscyclus van een webtoepassing: bij de ontwikkeling, het testen, de implementatie en bij het uitvoeren van updates. Geschikt voor Apps en Business intelligence tools
 
 
-![screenshot Azure PaaS model]( ![screenshot PaaS model]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10/Paas.jpg))
+![screenshot Azure PaaS model]( ![screenshot PaaS model]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10/Paas.jpg)
 
 
 
