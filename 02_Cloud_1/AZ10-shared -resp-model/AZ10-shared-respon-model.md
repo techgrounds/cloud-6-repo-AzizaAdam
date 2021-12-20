@@ -16,12 +16,19 @@ De Cloud provider extra biedt extra services aan waarmee je je eigen verantwoord
 IaaS
 
 
+![screenshot Azure IaaS modeel](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10-shared-respon-model/IaaS.jpg)
+
+
 
 PaaS
+
+![screenshot Azure PaaS model](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10-shared-respon-model/Paas.jpg)
 
 
 
 SaaS
+
+![screenshot Azure SaaS model](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10-shared-respon-model/SaaS.jpg)
 
 
 ## Azure Shared Responsibility model:
