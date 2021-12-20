@@ -12,15 +12,30 @@ Hoeveel verantwoordelijkheden bij de klant liggen is ook afhankelijk van wat voo
 De Cloud provider extra biedt extra services aan waarmee je je eigen verantwoordelijkheden makkelijker kan beheren.
 
 
-## Azure Shared Responsibility model
-
-
-## Bronnen
-
-
-
-## Probleem
+## Key-terms:
+IaaS
 
 
 
-## Resultaat
+PaaS
+
+
+
+SaaS
+
+
+## Azure Shared Responsibility model:
+
+
+## Bronnen:
+https://docs.microsoft.com/nl-nl/azure/security/fundamentals/shared-responsibility
+https://www.cisecurity.org/blog/shared-responsibility-cloud-security-what-you-need-to-know/
+https://www.youtube.com/watch?v=9CVBohl6w0Q&list=PLGjZwEtPN7j-Q59JYso3L4_yoCjj2syrM&index=6
+
+
+
+## Probleem:
+
+
+
+## Resultaat:
