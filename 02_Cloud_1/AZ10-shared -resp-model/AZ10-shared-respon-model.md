@@ -16,6 +16,10 @@ De Cloud provider extra biedt extra services aan waarmee je je eigen verantwoord
 
 ![screenshot shared respon.model]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10/AZ10-shared%20respon.%20model.jpg)
 
+![screenshot shared respon.model]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10/AZ10-shared%20respon.%20model.jpg)
+
+
+
 ## Key-terms:
 IaaS
 
