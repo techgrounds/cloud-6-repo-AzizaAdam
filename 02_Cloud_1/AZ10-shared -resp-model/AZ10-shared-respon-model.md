@@ -26,6 +26,8 @@ SaaS
 
 ## Azure Shared Responsibility model:
 
+![screenshot Azure shared respon. model](https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ05/Az05%20resource%20group%20and%20storage%20acconut%20.jpg)
+
 
 ## Bronnen:
 https://docs.microsoft.com/nl-nl/azure/security/fundamentals/shared-responsibility
