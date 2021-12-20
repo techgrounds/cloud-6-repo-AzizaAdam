@@ -46,6 +46,8 @@ Maak een script dat een willekeurig getal tussen 1 en 10 genereert, het opslaat 
 
 
 ##Bronnen
+https://www.youtube.com/watch?v=YAY0gTTydvg
+https://www.youtube.com/watch?v=3BLr-vnzpSQ
 https://linuxize.com/post/how-to-add-directory-to-path-in-linux/
 https://stackoverflow.com/questions/1262903/add-to-file-if-exists-and-create-if-not
 https://appuals.com/set-bash-variables-random-numbers/
