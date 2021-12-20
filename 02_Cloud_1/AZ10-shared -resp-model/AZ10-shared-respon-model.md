@@ -43,7 +43,9 @@ SaaS
 
 Software as a Service (SaaS) stelt gebruikers in staat om via internet verbinding te maken met toepassingen in de cloud en deze te gebruiken. Voorbeelden zijn e-mail, agendafuncties en kantoorsoftware (zoals Microsoft Office 365).
 
-![screenshot SaaS model]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10/SaaS.jpg))
+![screenshot SaaS model]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ10/SaaS.jpg)
+
+
 
 
 Serverless
