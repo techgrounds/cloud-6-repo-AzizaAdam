@@ -40,9 +40,9 @@ Een controle op een voorwaarde kan met ‘if’, ‘elif’ en/of ‘else’.
 ## Opdracht3:
 Maak een script dat een willekeurig getal tussen 1 en 10 genereert, het opslaat in een variabele en het getal vervolgens alleen aan een tekstbestand toevoegt als het getal groter is dan 5. Als het getal 5 of kleiner is, moet er een regel aan worden toegevoegd van tekst naar datzelfde tekstbestand in plaats daarvan.
 
-![screenshot1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201057.jpg)
-![screenshot2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201402.jpg)
-![screenshot3]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201515.jpg)
+![screenshot1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/IMG_20211209_202602.jpg)
+![screenshot2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/IMG_20211209_202857.jpg)
+![screenshot3]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/IMG_20211209_203511.jpg)
 
 
 ##Bronnen
