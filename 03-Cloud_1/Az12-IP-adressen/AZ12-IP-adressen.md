@@ -37,7 +37,7 @@ Wij focussen ons op IPv4. Ondanks dat de transitie naar IPv6 noodzakelijk is, ge
 
 •	Ontdek wat je publieke IP adres is op je mobiel via mobiel internet (als mogelijk)
 
-
+![screenshot VM IP]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ12/AZ12%20my%20public%20IP%20address.jpg)
 
 
 •	Maak een VM in je cloud met een publiek IP. Maak verbinding met deze VM.
