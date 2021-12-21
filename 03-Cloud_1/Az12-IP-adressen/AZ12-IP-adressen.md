@@ -24,10 +24,10 @@ Een andere oplossing is IPv6. IPv6 adressen bevatten 128 bits, en is vaak geschr
 Wij focussen ons op IPv4. Ondanks dat de transitie naar IPv6 noodzakelijk is, gebruikt AWS en Azure nog steeds voornamelijk IPv4 en is IPv6 een aparte optie die expliciet aangezet moet worden.
 
 
-•	Public en Private Ips
 
 
 •	NAT
+NAT is network masquerading of IP masquerading) is een verzamelnaam voor technieken die gebruikt worden in computernetwerken waarbij de adresinformatie in de datapakketjes veranderd wordt. Zodoende kunnen verschillende netwerken aan elkaar worden verbonden. De techniek wordt hoofdzakelijk in routers ingezet.
 
 ## Opdracht:
 •	Ontdek wat je publieke IP adres is van je laptop en mobiel op wifi
