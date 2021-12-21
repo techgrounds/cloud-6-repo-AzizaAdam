@@ -62,6 +62,8 @@ Wij focussen ons op IPv4. Ondanks dat de transitie naar IPv6 noodzakelijk is, ge
 
 
 ## Bronnen
+https://www.youtube.com/watch?v=OqsXzkXfwRw
+https://nl.wikipedia.org/wiki/IP-adres
 
 
 ## Probleem:
