@@ -38,6 +38,14 @@ Je kan ook twee Azure VNets met elkaar verbinden door middel van virtual network
 •	Name: Subnet-2
 •	IP Range: 10.0.1.0/24
 
+
+
+![screenshot subnets in azure1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/Subnets%20in%20azure.jpg)
+
+![screenshot subnets in azure2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/subnets%20in%20azure2.jpg)
+
+
+
 ## Opdracht 2:
 •	Maak een VM met de volgende vereisten:
 •	Een apache server moet met de volgende custom data geïnstalleerd worden:
@@ -52,6 +60,15 @@ systemctl restart apache2
 •	Subnet: Subnet-2
 •	Public IP: Enabled
 •	Controleer of je website bereikbaar is
+
+
+![screenshot VM in subnet2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/VM%20met%20subnet2.jpg)
+
+![screenshot connectie met de VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/connectie%20met%20de%20VM.jpg)
+
+![screenshot Apache2 is active]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/Apache2%20server%20is%20active.jpg)
+
+
 
 
 
