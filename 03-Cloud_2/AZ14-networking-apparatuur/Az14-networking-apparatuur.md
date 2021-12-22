@@ -57,6 +57,8 @@ Access points of AP's zijn alle hardware die gegevens kan verzenden en ontvangen
 ## Bronnen:
 https://www.cdw.com/content/cdw/en/articles/networking/enterprise-network-equipment-checklist.html
 https://www.youtube.com/watch?v=ecCuyq-Wprc
+https://kb.netgear.com/24221/How-do-I-view-the-router-status-and-usage-information-on-my-Nighthawk-router
+
 
 
 ## Probleem:
