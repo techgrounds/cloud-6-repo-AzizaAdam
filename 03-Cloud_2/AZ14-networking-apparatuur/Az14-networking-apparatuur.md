@@ -64,3 +64,10 @@ Was een leuke uitdaging maar lukt het wel aan het einde
 
 ## Resultaat:
 
+
+![screenshot My LAN setting]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ14/My%20LAN%20setting.jpg)
+
+![screenshot vconnected devices]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ14/Networking%20apparatuur.jpg)
+
+![screenshot DHCP info]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ14/DHCP%20my%20network.jpg)
+
