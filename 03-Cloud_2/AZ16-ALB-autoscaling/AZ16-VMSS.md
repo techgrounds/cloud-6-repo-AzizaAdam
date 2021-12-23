@@ -51,15 +51,15 @@ systemctl restart apache2
 ## Resultaat:
 
 
-![screenshot VMSS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/ALB-VM.jpg)
+![screenshot VMSS-apache2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/VMSS1.jpg)
 
-![screenshot Apache2 server via ALB-VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Apache2%20server%20via%20ALB-VM.jpg)
+![screenshot stress-ng commands-Linux]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/stress-ng%20commands%20linux.jpg)
 
-![screenshot setting VMSS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/VM%20scaling-set.jpg)
+![screenshot stress-ng commands-Linux]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/stress-ng%20commands%20linux2.jpg)
 
-![screenshot config. VMSS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/VMSS%20config.jpg)
+![screenshot performing stress test via CLI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/performing%20stress%20test%20for%20the%20VMSS.jpg)
 
-![screenshot failure to connect to front-end ALB IP]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/failure%20to%20connect%20to%20front-end%20LB%20IP.jpg)
+![screenshot VMSS meteric after the stress test]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/VMSS%20meteric%20after%20the%20stress%20test.jpg)
 
 ![screenshot setting 4 VM instances]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Setting%204%20VMs.jpg)
 
