@@ -44,7 +44,7 @@ systemctl restart apache2
 •	Verwijder een VM bij 30% CPU gebruik
 
 
-Opdracht 2:
+## Opdracht 2:
 •	Controleer of je via het endpoint van je load balancer bij de webserver kan komen.
 •	Voer een load test uit op je server(s) om auto scaling the activeren. Er kan een delay zitten in het creëren van nieuwe VMs, afhankelijk van de settings in je VM Scale Set.
 
