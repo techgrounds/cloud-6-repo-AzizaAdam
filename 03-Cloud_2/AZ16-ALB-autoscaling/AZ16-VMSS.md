@@ -61,9 +61,6 @@ systemctl restart apache2
 
 ![screenshot VMSS meteric after the stress test]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/VMSS%20meteric%20after%20the%20stress%20test.jpg)
 
-![screenshot setting 4 VM instances]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Setting%204%20VMs.jpg)
-
-![screenshot monitoring the health status of the instancies]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Monitoring%20the%20health%20status%20of%20the%20VMs.jpg)
 
 
 
