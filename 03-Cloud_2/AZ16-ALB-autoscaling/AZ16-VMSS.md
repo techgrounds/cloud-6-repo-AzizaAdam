@@ -44,15 +44,28 @@ systemctl restart apache2
 •	Verwijder een VM bij 30% CPU gebruik
 
 
-![screenshot VM in subnet2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/VM%20met%20subnet2.jpg)
-
-![screenshot connectie met de VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/connectie%20met%20de%20VM.jpg)
-
-![screenshot Apache2 is active]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ15/Apache2%20server%20is%20active.jpg
-
 Opdracht 2:
 •	Controleer of je via het endpoint van je load balancer bij de webserver kan komen.
 •	Voer een load test uit op je server(s) om auto scaling the activeren. Er kan een delay zitten in het creëren van nieuwe VMs, afhankelijk van de settings in je VM Scale Set.
+
+## Resultaat:
+
+
+![screenshot ALB-VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/ALB-VM.jpg)
+
+![screenshot Apache2 server via ALB-VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Apache2%20server%20via%20ALB-VM.jpg)
+
+![screenshot setting VMSS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/VM%20scaling-set.jpg)
+
+![screenshot config. VMSS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/VMSS%20config.jpg)
+
+![screenshot failure to connect to front-end ALB IP]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/failure%20to%20connect%20to%20front-end%20LB%20IP.jpg)
+
+![screenshot setting 4 VM instances]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Setting%204%20VMs.jpg)
+
+![screenshot monitoring the health status of the instancies]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Monitoring%20the%20health%20status%20of%20the%20VMs.jpg)
+
+
 
 
 ## Bronnen:
@@ -67,5 +80,5 @@ https://www.youtube.com/watch?v=MtOMblGKwdo
 ## Probleem:
 Geen
 
-## Resultaat:
+
 
