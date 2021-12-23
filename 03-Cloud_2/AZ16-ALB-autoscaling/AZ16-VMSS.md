@@ -51,7 +51,7 @@ systemctl restart apache2
 ## Resultaat:
 
 
-![screenshot ALB-VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/ALB-VM.jpg)
+![screenshot VMSS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/ALB-VM.jpg)
 
 ![screenshot Apache2 server via ALB-VM]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ16/Apache2%20server%20via%20ALB-VM.jpg)
 
