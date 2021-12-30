@@ -31,21 +31,34 @@ U kunt een waarde toewijzen aan een tekenreeks, zodat de waarde ergens anders in
 Het toekennen van een variabele doe je met ‘=’.
 Het lezen van de waarde van een variabele doe je met ‘$<insert variable name here>’.
 
+![scripts-directory]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/Create%20scripts%20directory.jpg)
+
+![add-script-to-a-PATH-var]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/add%20scripts%20directory%20to%20PATH%20var.jpg)
+
+![script-appends-a-line]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/create%20script%20to%20append%20a%20line%20in%20txt%20file.jpg)
+
+![script-to-install-httpd]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/script%20to%20install%20httpd.jpg)
+
+![httpd-is-running]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/httpd%20is%20running%20and%20active.jpg)
+
 ## Opdracht2:
 Maak een script dat een willekeurig getal tussen 1 en 10 genereert, dit opslaat in een variabele en het getal vervolgens aan een tekstbestand toevoegt.
 Conditie:
 U kunt ervoor kiezen om alleen delen van uw script uit te voeren als aan een bepaalde voorwaarde is voldaan. Lees bijvoorbeeld alleen een bestand als het bestand bestaat, of schrijf alleen naar een logboek als de statuscontrole een fout retourneert. Dit kan aan de hand van voorwaarden.
 Een controle op een voorwaarde kan met ‘if’, ‘elif’ en/of ‘else’.
 
+![script-random-number-gen]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/script%20random%20number%20generator.jpg)
+
+
+
 ## Opdracht3:
 Maak een script dat een willekeurig getal tussen 1 en 10 genereert, het opslaat in een variabele en het getal vervolgens alleen aan een tekstbestand toevoegt als het getal groter is dan 5. Als het getal 5 of kleiner is, moet er een regel aan worden toegevoegd van tekst naar datzelfde tekstbestand in plaats daarvan.
 
-![screenshot1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/IMG_20211209_202602.jpg)
-![screenshot2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/IMG_20211209_202857.jpg)
-![screenshot3]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/IMG_20211209_203511.jpg)
+![script-random-number-gen-euqal-bigger-than-5-in-txt-file]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx10/script%20to%20add%20random%20number%20higher%20than%205%20to%20txt%20file.jpg)
 
 
-##Bronnen
+
+## Bronnen
 https://www.youtube.com/watch?v=YAY0gTTydvg
 https://www.youtube.com/watch?v=3BLr-vnzpSQ
 https://linuxize.com/post/how-to-add-directory-to-path-in-linux/
