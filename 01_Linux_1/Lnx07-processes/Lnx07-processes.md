@@ -13,6 +13,24 @@ Ontdek de PID van de ssh-daemon.
 Zoek uit hoeveel geheugen de sshd gebruikt.
 Stop of stop het sshd-proces.
 
+Start the ssh daemon. (first must install it)
+$ sudo apt-get install openssh-server
+
+$sudo apt autoremove (to remove suggested uncessary files)
+
+$ sudo systemctl start ssh (For systemd based Ubuntu Linux 16.04/18.04/20.04 LTS or above)
+
+Find out the PID of the ssh daemon.
+$ sudo systemctl status ssh
+
+Find out how much memory the sshd is using.
+$ free -m
+
+Stop or kill the sshd process.
+$ sudo systemctl stop ssh
+
+$ sudo systemctl status ssh
+
 
 	![screenshot1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201057.jpg)
 	![screenshot2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Lnx07/IMG_20211209_201402.jpg)
