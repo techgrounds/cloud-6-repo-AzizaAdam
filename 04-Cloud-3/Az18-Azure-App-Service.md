@@ -6,7 +6,18 @@ Azure App service enables you to build and host web-apps, mobile backends and RE
 
 Hosting your web application using Azure App Service makes deploying and managing a web app much easier when compared to managing a physical server
 
-It offers autoscaling and high availability supports both Windows and Linux and allows automated deployments from Github, Azure DevOps and any Git-repo.
+It offers autoscaling and high availability supports both Windows and Linux and allows automated deployments from:
+
+•	Azure DevOps: You can push your code to Azure DevOps (previously known as Visual Studio Team Services), build your code in the cloud, run the tests, generate a release from the code, and finally, push your code to an Azure Web App.
+
+•	GitHub: Azure supports automated deployment directly from GitHub. When you connect your GitHub repository to Azure for automated deployment, any changes you push to your production branch on GitHub will be automatically deployed for you.
+
+•	Bitbucket: With its similarities to GitHub, you can configure an automated deployment with Bitbucket.
+
+•	OneDrive: Microsoft's cloud-based storage. You must have a Microsoft Account linked to a OneDrive account to deploy to Azure.
+
+•	Dropbox: Azure supports deployment from Dropbox, which is a popular cloud-based storage system that is similar to OneDrive.
+
 
 Connect your web app with any of the above sources and App Service will do the rest for you by automatically syncing your code and any future changes on the code into the web app.
 It supports multiple languages like: 
