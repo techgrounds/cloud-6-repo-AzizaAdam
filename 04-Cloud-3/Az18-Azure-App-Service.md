@@ -30,7 +30,15 @@ APP service plan is a container with assigned capacity vCOre, RAM and storage. Y
 
 
 
-•	Azure website domain				
+•	Azure website domain
+
+## Excersice:
+
+
+![Azure-web-app]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ18/Azure%20web%20app%20details.jpg)
+
+![Azure-web-app-online]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ18/deployment%20of%20Azure%20web-app.jpg)
+
 				
 ## Bronnen	
 https://azure.microsoft.com/nl-nl/services/app-service/
