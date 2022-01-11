@@ -26,7 +26,12 @@ Azure DNS public zone host domain name zone data for records that you intend to 
 Many organizations use internal DNS names that are separate from public DNS names for hosts on their internal on-premises networks. Azure Private DNS zones allow you to replicate this functionality by configuring a private DNS zone namespace that can be used to map FQDNs with private Azure resources.	Azure DNS private zones support all common DNS record types.
 A diagram shows the integration of the Azure DNS public zone tailwindtraders.com with the Azure DNS private zone tailwindtraders.com in split-horizon configuration.
 
-![Azure-DNS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ18/Azure%20web%20app%20details.jpg)
+![Azure-DNS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ20/Azure%20public%20and%20private%20DNS.jpg)
+
+## Excersice
+Set Azure DNS zone to host your website DNS and set new record with your website IP.
+
+![Azure-DNS-zone-zizola.net]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ20/Azure%20DNS%20for%20zizola.net.jpg)
 
 
 •	FQDN
