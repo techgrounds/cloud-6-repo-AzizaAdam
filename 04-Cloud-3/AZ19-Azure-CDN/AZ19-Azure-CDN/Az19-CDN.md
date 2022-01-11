@@ -7,7 +7,7 @@ The benefits of using Azure CDN to deliver web site assets include:
 •	Large scaling to better handle instantaneous high loads, such as the start of a product launch event.
 •	Distribution of user requests and serving of content directly from edge servers so that less traffic is sent to the origin serve
 
-      
+![Azure-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ20/Azure%20public%20and%20private%20DNS.jpg)  
 
 1.	A user (Alice) requests a file (also called an asset) by using a URL with a special domain name, such as <endpoint name>.azureedge.net. This name can be an endpoint hostname or a custom domain. The DNS routes the request to the best performing POP location, which is usually the POP that is geographically closest to the user.
 2.	If no edge servers in the POP have the file in their cache, the POP requests the file from the origin server. The origin server can be an Azure Web App, Azure Cloud Service, Azure Storage account, or any publicly accessible web server.
