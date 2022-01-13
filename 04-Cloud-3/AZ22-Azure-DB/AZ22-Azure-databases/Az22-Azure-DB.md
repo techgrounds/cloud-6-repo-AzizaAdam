@@ -4,15 +4,15 @@
 •Azure Cosmos DB
 
 Azure Database for MySQL
-•	
+
 Azure Database for PostgreSQL
-•	
+
 Azure Synapse Analytics
-•	
+
 Azure HDInsight
-•	
+
 Azure Databricks
-•	
+
 Azure Data Lake Analytics
 
 ## Azure Databases deliver:
@@ -23,8 +23,7 @@ Azure Data Lake Analytics
 •	Automatic backups.
 •	Enterprise-grade security and compliance.
 
-
-![Types-of- DB’s]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ22/Types%20of%20databases%20in%20Azure.jp)
+![Types-of-DB’s]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ22/Types%20of%20databases%20in%20Azure.jpg)
 
 ## Azure SQL Database
 
@@ -35,6 +34,7 @@ Azure SQL Database is a relational database based on the latest stable version o
 Create a SQL database in Azure and then query the data in that database.
 
 ![SQL-DB]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ22/Demo%20SQL%20DB.jpg)  
+
 
 ## Task 2: Test the database
 ![Query-SQL-DB]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ22/Running%20query%20in%20SQL%20DB.jpg)  
