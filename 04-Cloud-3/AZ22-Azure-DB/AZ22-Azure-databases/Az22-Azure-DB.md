@@ -1,19 +1,19 @@
 ## Azure Databases
-•	Azure SQL Managed Instance
+•Azure SQL Managed Instance
 
-•	Azure Cosmos DB
+•Azure Cosmos DB
 
-•	Azure Database for MySQL
+•Azure Database for MySQL
 •	
-•	Azure Database for PostgreSQL
+•Azure Database for PostgreSQL
 •	
-•	Azure Synapse Analytics
+•Azure Synapse Analytics
 •	
-•	Azure HDInsight
+•Azure HDInsight
 •	
-•	Azure Databricks
+•Azure Databricks
 •	
-•	Azure Data Lake Analytics
+•Azure Data Lake Analytics
 
 ## Azure Databases deliver:
 •	Built-in high availability with no additional cost.
@@ -24,7 +24,7 @@
 •	Enterprise-grade security and compliance.
 
 
-![Types-of- DB’s]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ22/Types%20of%20databases%20in%20Azure.jp)  
+![Types-of- DB’s]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ22/Types%20of%20databases%20in%20Azure.jp)
 
 ## Azure SQL Database
 
