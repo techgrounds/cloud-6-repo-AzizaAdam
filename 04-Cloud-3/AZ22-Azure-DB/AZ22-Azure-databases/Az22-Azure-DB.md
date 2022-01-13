@@ -57,16 +57,6 @@ Azure Cosmos DB provides native support for wire protocol-compatible APIs for po
 
 					
 
-
-## Azure Database (+ managed instance)
-
-Azure SQL Managed Instance is a scalable cloud data service that provides the broadest SQL Server database engine compatibility with all the benefits of a fully managed platform as a service. Azure SQL Managed Instance is a platform as a service (PaaS) database engine, which means that your company will be able to take advantage of the best features of moving your data to the cloud in a fully-managed environment. 
-
-
-
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
-
-
 	
 
 ## References
