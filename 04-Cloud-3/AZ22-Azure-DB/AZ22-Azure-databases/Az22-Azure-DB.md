@@ -62,7 +62,6 @@ Azure Cosmos DB provides native support for wire protocol-compatible APIs for po
 ## References
 
 https://docs.microsoft.com/en-us/learn/modules/azure-database-fundamentals/introduction
-
 https://docs.microsoft.com/en-us/learn/modules/explore-azure-cosmos-db/
 https://www.youtube.com/watch?v=tcQnMJOrBl4
 https://www.youtube.com/watch?v=W8feSZXm2Ec
