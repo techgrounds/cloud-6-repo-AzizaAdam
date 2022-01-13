@@ -3,17 +3,17 @@
 
 •Azure Cosmos DB
 
-•Azure Database for MySQL
+Azure Database for MySQL
 •	
-•Azure Database for PostgreSQL
+Azure Database for PostgreSQL
 •	
-•Azure Synapse Analytics
+Azure Synapse Analytics
 •	
-•Azure HDInsight
+Azure HDInsight
 •	
-•Azure Databricks
+Azure Databricks
 •	
-•Azure Data Lake Analytics
+Azure Data Lake Analytics
 
 ## Azure Databases deliver:
 •	Built-in high availability with no additional cost.
