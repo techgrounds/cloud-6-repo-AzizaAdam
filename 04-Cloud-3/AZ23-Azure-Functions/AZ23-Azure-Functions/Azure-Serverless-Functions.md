@@ -4,28 +4,32 @@
 ## Azure Functions 	
 
 
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
+![Azure-Serverless-Functions]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20serverless%20services.jpg)  
+
+
+
+![Azure-Logic-App]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20Logic-App.jpg) 
+
+			
+## Logic -App (Hands-on-Lab)
+
+![My-Azure-Logic-App-details]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20Logic-App-info.jpg) 
+
+![My-Azure-Logic-App]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/My%20Azure%20Logic%20app.jpg) 
+
 
 ## Function APPs
 
 ## Create a timer-triggered function
+
 Let's create a timer trigger for your function.
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
+![Logic-App-Timmer-Trigger]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function-Timer%20trigger.jpg)  
 
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
 
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
 
 ## Execute an Azure function with an HTTP request
 
-			
-## Logic -App
-
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
-
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
-
-![Concept-CDN]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ19/CDN%20concept.jpg)  
+![Logic-App-HTTP-Trigger]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
 
 
 
@@ -49,6 +53,7 @@ Azure Event Grid is deeply integrated with Azure services and can be integrated 
 https://docs.microsoft.com/en-us/learn/modules/execute-azure-function-with-triggers/4-create-timer-trigger?pivots=powershell
 
 https://www.youtube.com/watch?v=ansa4M7iTmg
+
 https://docs.microsoft.com/en-us/learn/modules/azure-event-grid/1-introduction
 
 
