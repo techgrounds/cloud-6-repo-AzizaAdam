@@ -6,7 +6,7 @@ When we use Docker, we immediately get access to the benefits containerization o
 1.	Efficient use of hardware
 Containers run without using a virtual machine (VM). As we saw, the container relies on the host kernel for functions such as file system, network management, process scheduling, and memory management.
 
-![Docker-server-vs-own-server]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+![Docker-server-vs-own-server]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20vs%20own%20server.jpg)  
 
 
 
