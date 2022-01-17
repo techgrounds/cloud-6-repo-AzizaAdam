@@ -6,7 +6,7 @@ When we use Docker, we immediately get access to the benefits containerization o
 1.	Efficient use of hardware
 Containers run without using a virtual machine (VM). As we saw, the container relies on the host kernel for functions such as file system, network management, process scheduling, and memory management.
 
-![Docker-server-vs-own-server]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20vs%20own%20server.jpg)  
+![Docker-server-vs-own-server]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
 
 
 
@@ -34,11 +34,10 @@ The container depends on the OS kernel to manage services such as the file syste
 Docker container:
 The Docker platform consists of several components that we use to build, run, and manage our containerized applications.
 Image (docker)
-![Docker-architecture]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20architecture.jpg)  
+![Docker-architecture]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
 
-![Docker-vs-own-server]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20vs%20own%20server.jpg)
 
-![Docker-vs-own-server-security]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20vs%20own%20server-security.jpg)  
+![Docker-vs-own-server-security]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
 
 The Docker client
 The Docker client is a command-line application named docker that provides us with a command line interface (CLI) to interact with a Docker server. The docker command uses the Docker REST API to send instructions to either a local or remote server and functions as the primary interface we use to manage our containers.
@@ -54,8 +53,7 @@ A Dockerfile is a text file that contains the instructions we use to build and r
 Stackable Unification File System (UnionFs)
 Unionfs is used to create Docker images. Unionfs is a filesystem that allows you to stack several directories, called branches, in such a way that it appears as if the content is merged. However, the content is physically kept separate. Unionfs allows you to add and remove branches as you build out your file system.
 ## image 
-
-![UnionFs]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/UnionFs.jpg)  
+![UnionFs]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
 
 
 
@@ -63,7 +61,6 @@ or example, assume we're building an image for our web application from earlier.
 A final writeable layer is created once the container is run from the image. This layer however, does not persist when the container is destroyed.
 
 ## Azure container instance
-
 Azure Container Instances (ACI) is a great solution for any scenario that can operate in isolated containers, including simple applications, task automation, and build jobs. Here are some of the benefits:
 •	Fast startup: ACI can start containers in Azure in seconds, without the need to provision and manage VMs
 •	Container access: ACI enables exposing your container groups directly to the internet with an IP address and a fully qualified domain name (FQDN)
@@ -77,15 +74,34 @@ Multi-container groups currently support only Linux containers. For Windows cont
 •	You can only mount Azure Files shares to Linux containers.
 •	Azure file share volume mount requires the Linux container run as root.
 •	Azure File share volume mounts are limited to CIFS support.
+## Azure Kubernetes service
+It is a tool to manage container-based apps (managed service)Pods:. Ideal to manage and orchestrate micro-services based-apps, for both stateless and stateful applications.
+
+## Pods
+A tool to run instance of the app, normally each app is mapped to a single container.
+## Deployment
+Deploying one or multiple Pods. If Kubernetes scheduler finds some issues in the health of pods or nodes then new pods are created.
+
+
+
 ## Hands-On ACI
 
-![My-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/My%20ACI.jpg)  
+![My-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
 
 
-![Connection-to-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/connection%20to%20ACI.jpg)  
+![Connection-to-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+
+
+## Hands-On AKS
+![My-AKS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/My%20AKS.jpg)  
+
+
+![Connection-to-AKS]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/connection%20to%20AKS.jpg)  
 
 
 ## Bronnen
 https://docs.microsoft.com/en-us/learn/modules/intro-to-docker-containers/3-how-docker-images-work
+https://www.whizlabs.com/learn/course/microsoft-azure-certification-az-900/256/video
+
 
 
