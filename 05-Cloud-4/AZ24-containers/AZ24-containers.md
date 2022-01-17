@@ -34,10 +34,11 @@ The container depends on the OS kernel to manage services such as the file syste
 Docker container:
 The Docker platform consists of several components that we use to build, run, and manage our containerized applications.
 Image (docker)
-![Docker-architecture]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+![Docker-architecture]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20architecture.jpg)  
 
+![Docker-vs-own-server]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20vs%20own%20server.jpg)
 
-![Docker-vs-own-server-security]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+![Docker-vs-own-server-security]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/Docker%20vs%20own%20server-security.jpg)  
 
 The Docker client
 The Docker client is a command-line application named docker that provides us with a command line interface (CLI) to interact with a Docker server. The docker command uses the Docker REST API to send instructions to either a local or remote server and functions as the primary interface we use to manage our containers.
@@ -54,7 +55,7 @@ Stackable Unification File System (UnionFs)
 Unionfs is used to create Docker images. Unionfs is a filesystem that allows you to stack several directories, called branches, in such a way that it appears as if the content is merged. However, the content is physically kept separate. Unionfs allows you to add and remove branches as you build out your file system.
 ## image 
 
-![UnionFs]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+![UnionFs]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/UnionFs.jpg)  
 
 
 
@@ -78,10 +79,10 @@ Multi-container groups currently support only Linux containers. For Windows cont
 •	Azure File share volume mounts are limited to CIFS support.
 ## Hands-On ACI
 
-![My-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+![My-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/My%20ACI.jpg)  
 
 
-![Connection-to-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+![Connection-to-ACI]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ24/connection%20to%20ACI.jpg)  
 
 
 ## Bronnen
