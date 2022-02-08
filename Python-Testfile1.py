@@ -66,6 +66,7 @@ x = b + d
 print(x)
 # Python is fun!
 
-x = input()
-x = " where are you now"
-print(x)
+
+x = input("Tell me where are you?")
+#using type function output as input for .format
+print("Because the ouput of input is always a string the result is:{}".format(type(x)))
