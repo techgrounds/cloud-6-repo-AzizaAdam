@@ -67,6 +67,15 @@ print(x)
 # Python is fun!
 
 
-x = input("Tell me where are you?")
-#using type function output as input for .format
-print("Because the ouput of input is always a string the result is:{}".format(type(x)))
+
+x = 5
+
+for i in range(50):
+    # do something here
+    print(x * i)
+
+
+arr = ["Coen", "Casper", "Joshua", "Abdessamad", "Saskia"]
+
+for z in arr:
+    print(z) 
