@@ -8,8 +8,13 @@ In order to start writing code, you’ll need an IDE. The most popular IDE is Vi
 
 ## Key-words
 IDE:
+An integrated development environment (IDE): is software for building applications that combines common developer tools into a single graphical user interface (GUI).
+
+IDEs can perform a variety of functions. Notable ones include write code, compile code, debug code, and monitor resources. Examples of IDEs include NetBeans, Eclipse, IntelliJ, and Visual Studio.
 
 VSC:
+Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded Git. Users can change the theme, keyboard shortcuts, preferences, and install extensions that add additional functionality.
+
 ## Exercise:
 •	Install the latest version of Python from https://www.python.org/
 •	Install VS Code from https://code.visualstudio.com/download
@@ -18,7 +23,14 @@ VSC:
 
  
 
-![Python-output-hello-world]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/AZ23/Azure%20function%20APP-HTTP-trigger.jpg)  
+![Python-output-hello-world]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python01/Exercise%201.jpg)  
+
+
+## References:
+https://www.w3schools.com/python/python_comments.asp
+https://www.youtube.com/watch?v=_uQrJ0TkZlc&t=927s
+https://en.wikipedia.org/wiki/Visual_Studio_Code
+
 
 
 
