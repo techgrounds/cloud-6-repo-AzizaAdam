@@ -12,7 +12,7 @@ Exercise 1:
 •	Create a third variable named z. The value of z should be the sum of x and y.
 •	Print the value of z.
 
-![Python-output-hello-world]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python01/Exercise%201.jpg) 
+![Python-variables]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python02/Ex01.jpg) 
 
 
 Exercise 2:
@@ -21,8 +21,6 @@ Exercise 2:
 •	Print the text “Hello, <your name here>!”. Use name in the print statement.
 Example output:
  
-
-![Python-output-hello-world]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python01/Exercise%201.jpg) 
 
 Exercise 3:
 •	Create a new script.
@@ -35,7 +33,7 @@ Exercise 3:
 Example output:
  
 
-![Python-output-hello-world]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python01/Exercise%201.jpg) 
+![Python-change-varaible-value]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python02/Ex2%20and%203.jpg) 
 
 
 ## References 
