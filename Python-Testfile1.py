@@ -79,3 +79,14 @@ arr = ["Coen", "Casper", "Joshua", "Abdessamad", "Saskia"]
 
 for z in arr:
     print(z) 
+
+
+try:
+    x = int(input("How old are you? "))
+    if x == 100 :
+        print("You are really old.")
+    elif x < 100 :
+        print("Well not that bad.")
+# if the input is not valid and cannot be converted to int.
+except:
+    print("You did not enter a valid number.")
