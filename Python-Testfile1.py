@@ -106,3 +106,7 @@ y = 255
 z = av(x, y)
 
 print("The average of", x, "and", y, "is", z)
+
+Group1 = ["Aziza", "Matais", "Mylene"]
+for x in Group1:
+    print(x)
