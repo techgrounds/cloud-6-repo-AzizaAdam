@@ -81,12 +81,28 @@ for z in arr:
     print(z) 
 
 
-try:
-    x = int(input("How old are you? "))
-    if x == 100 :
-        print("You are really old.")
-    elif x < 100 :
-        print("Well not that bad.")
-# if the input is not valid and cannot be converted to int.
-except:
-    print("You did not enter a valid number.")
+
+
+import random
+
+for k in range(5):
+    print(random.randint(0,100))
+
+    # defining a function, which then takes the value x provided and prints the string with that value in correct spot.
+
+def my_function(F):
+      print(" Hello " + F)
+
+F = "world !"
+F = "Aziza !"
+
+
+my_function(F)
+
+def av(x, y):
+    	return( (x + y) / 2)
+x = 128
+y = 255
+z = av(x, y)
+
+print("The average of", x, "and", y, "is", z)
