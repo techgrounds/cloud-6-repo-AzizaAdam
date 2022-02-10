@@ -120,3 +120,19 @@ for x in range(len(L)):
     else:
         print(L[x] + L[x + 1])
 
+import csv
+
+Students_dict = {
+    "First name: ": "Ann",
+    "Last name: ": "Smith",
+    "Job title: ":"Student",
+    "Company: ": "Techgrounds"
+}
+# Create key, value pairs to link user input to the dictionary
+Students_dict["First name: "] = input("FirstName:")
+Students_dict["Last name: "] = input("LastName:")
+Students_dict["Job title: " ] = input("jobtitle:" )
+Students_dict["Company: " ] = input("company:" )
+
+for key, value in Students_dict.items():
+    print(key, value)
