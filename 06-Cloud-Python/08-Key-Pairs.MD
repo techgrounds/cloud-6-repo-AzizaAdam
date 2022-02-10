@@ -13,10 +13,10 @@ Job title	Learning Coach
 Company	TechGrounds
 •	Loop over the dictionary and print every key-value pair in the terminal.
 
-![Python-key-pairs-Ex1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python08/Ex1.jpg) 
-
-
 ## Exercise 2:
 •	Create a new script.
 •	Use user input to ask for their information (first name, last name, job title, company). Store the information in a dictionary.
 •	Write the information to a csv file (comma-separated values). The data should not be overwritten when you run the script multiple times.
+
+![Python-key-pairs-Ex1-2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python08/Ex1-2.jpg)
+
