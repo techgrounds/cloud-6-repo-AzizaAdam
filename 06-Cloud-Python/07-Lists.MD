@@ -9,21 +9,20 @@ You can loop over a list using a for loop. Instead of a number within a range, i
 •	Create a new script.
 •	Create a variable that contains a list of five names.
 •	Loop over the list using a for loop. Print every individual name in the list on a new line.
-Example output:
+
  
 
-![Python-Lists-Ex1]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python07/Ex1-2.jpg) 
 
 ## Exercise 2:
 •	Create a new script.
 •	Create a list of five integers.
 •	Use a for loop to do the following for every item in the list:
 Print the value of that item added to the value of the next item in the list. If it is the last item, add it to the value of the first item instead (since there is no next item).
-Example output:
+
  
 The first result above is created by adding 9 and 80. The second result is created by adding 80 and 16, etc. The last result is created by adding 35 and 9.
 
 
-![Python-Lists-Ex2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python06/Ex3.jpg) 
+![Python-Lists-Ex2]( https://github.com/techgrounds/cloud-6-repo-AzizaAdam/blob/main/00_includes/Python07/Ex1-2.jpg) 
 
 
