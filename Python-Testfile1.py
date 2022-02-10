@@ -110,3 +110,13 @@ print("The average of", x, "and", y, "is", z)
 Group1 = ["Aziza", "Matais", "Mylene"]
 for x in Group1:
     print(x)
+
+
+L = [1, 5, 1, 3, 7, 9]
+
+for x in range(len(L)):
+    if L[x] == L[len(L)-1]:
+        print(L[x] + L[0])
+    else:
+        print(L[x] + L[x + 1])
+
