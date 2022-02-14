@@ -1,5 +1,5 @@
-Project (Cloud6.Sentia1)
-Introductie:
+## Project (Cloud6.Sentia1)
+## Introductie:
 In de afgelopen maanden heb je veel geleerd over de cloud en deze kennis toegepast op relatief kleine opdrachten. Dit gaat nu allemaal samenkomen in de volgende grote opdracht waarin je een bestaande architectuur verbetert en automatiseert.
 
 Je zal de komende weken samen aan individuele oplossingen werken voor je eigen cloud provider waarbij je te maken krijgt met bedrijfsbeleid, eisen van eindgebruikers, eisen van collega’s, en de tijdsdruk van een groot project in een beperkte tijd. Hierin zullen de verwachtingen op het niveau van een junior engineer zijn.
@@ -11,7 +11,7 @@ Wat zijn de verwachtingen in dit project?
 •	Een discussie kunnen aangaan over de technische elementen
 •	Verbeteringen kunnen suggereren op code- en projectniveau
 
-BELANGRIJK: Je zult tijdens het project nieuwe kennis opdoen. Dit is heel normaal in de IT wereld. Zelfs de meest senior engineers zullen nog altijd nieuwe dingen moeten leren voordat ze aan een nieuw project beginnen. Concepten als Infrastructure as Code ga je nu ook daadwerkelijk toepassen en daarvan is verwacht dat je tijd nodig hebt om de details ervan te leren. Onderzoek is geen verspilde tijd! Leren is geen verspilde tijd!
+## BELANGRIJK: Je zult tijdens het project nieuwe kennis opdoen. Dit is heel normaal in de IT wereld. Zelfs de meest senior engineers zullen nog altijd nieuwe dingen moeten leren voordat ze aan een nieuw project beginnen. Concepten als Infrastructure as Code ga je nu ook daadwerkelijk toepassen en daarvan is verwacht dat je tijd nodig hebt om de details ervan te leren. Onderzoek is geen verspilde tijd! Leren is geen verspilde tijd!
 
 Hieronder zie je de huidige architectuur van onze applicatie. Jij bent verantwoordelijk voor het verhuizen van de huidige servers naar de cloud en voor het automatiseren van de deployment van deze infrastructuur. Dit moet gedaan worden in CDK (voor AWS) of Bicep (voor Azure). Voorlopig is het genoeg om simpele placeholder content te gebruiken voor de website (denk aan een simpele index.html in plaats van een hele website).
 
@@ -20,7 +20,7 @@ Benodigdheden:
 •	Je GitHub repository
 •	Project Templates
 •	Je labomgeving
-Opdracht:
+## Opdracht:
 Je hebt een opdracht gekregen om een  bedrijf te helpen bij de transitie naar de cloud. Het bedrijf heeft zijn infrastructuur laten analyseren door een eerder team. Er is een diagram gemaakt naar aanleiding van de huidige situatie. Je kan deze diagrammen vinden in de Bijlagen. 
 
 Jij zal de Infrastructure as Code app bouwen om dit ontwerp naar de cloud te brengen. Het is de bedoeling dat je voor deze app CDK van AWS of Bicep van Azure gebruikt. De volgende eisen zijn aangegeven als noodzakelijk:
