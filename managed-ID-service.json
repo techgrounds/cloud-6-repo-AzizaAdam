@@ -1,0 +1,13 @@
+{
+    "id": "/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourcegroups/project/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity566",
+    "name": "identity566",
+    "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+    "location": "westeurope",
+    "tags": {},
+    "properties": {
+        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+        "principalId": "2ac95fd8-9277-4adb-80c8-af41d0c73dad",
+        "clientId": "69fde7b4-a3f9-48b7-bdd6-af82d30d75ce"
+    }
+}
+
