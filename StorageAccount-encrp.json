@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "string"
+            "type": "westeurope"
         },
         "storageAccountName": {
-            "type": "string"
+            "type": "demostg"
         },
         "accountType": {
             "type": "string"
