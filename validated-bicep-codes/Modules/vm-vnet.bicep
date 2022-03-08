@@ -239,7 +239,7 @@ resource pubipWebserver 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
     tier: 'Regional'
   }
   zones: [
-    '2'
+    '1'
   ]
   properties:{
     publicIPAllocationMethod:'Static'
@@ -254,7 +254,7 @@ resource pubipAdminserver 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
     tier: 'Regional'
   }
   zones: [
-    '2'
+    '1'
   ]
   properties:{
     publicIPAllocationMethod:'Static'
@@ -360,7 +360,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: vm_linwebserver_name
   location: location
   zones: [
-    '2'
+    '1'
   ]
   properties: {
     userData: script64
@@ -434,7 +434,7 @@ resource vmAdmin_windows 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: vm_windowsadmin_name
   location: location
   zones: [
-    '2'
+    '1'
   ]
   properties: {
     hardwareProfile: {
@@ -525,6 +525,8 @@ param keyVaultKeyName string = 'key${uniqueString(resourceGroup().name)}'
 
 @description('The name of the Storage Account')
 param storageAccountName string = 'stg${uniqueString(resourceGroup().id)}' 
+param storageblob string = 'blob${uniqueString(resourceGroup().id)}'
+param containerName string = 'cont${uniqueString(resourceGroup().id)}'
 
 
 
@@ -552,10 +554,26 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
         tenantId: tenantId
         permissions: {
           keys: [
-            'unwrapKey'
-            'wrapKey'
+            'backup'
+            'create'
+            'decrypt'
+            'delete'
+            'encrypt'
             'get'
+            'getrotationpolicy'
+            'import'
             'list'
+            'purge'
+            'recover'
+            'release'
+            'restore'
+            'rotate'
+            'setrotationpolicy'
+            'sign'
+            'unwrapKey'
+            'update'
+            'verify'
+            'wrapKey'
           ]
         }
         objectId: userAssignedIdentity.properties.principalId
@@ -623,6 +641,47 @@ resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   }
 }
 
+//add blob storage
+
+resource store_blob 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
+  parent: storage
+  name: 'default'
+  properties: {
+    changeFeed: {
+      enabled: false
+    }
+    restorePolicy: {
+      enabled: false
+    }
+    containerDeleteRetentionPolicy: {
+      enabled: true
+      days: 7
+    }
+
+    deleteRetentionPolicy: {
+      enabled: true
+      days: 7
+    }
+    isVersioningEnabled: false
+  }
+}
+
+// adding container 
+
+resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-08-01' = {
+  name: containerName
+  parent: store_blob
+  properties: {
+    defaultEncryptionScope: '$account-encryption-key'
+    denyEncryptionScopeOverride: false
+    immutableStorageWithVersioning: {
+      enabled: false
+    }
+    publicAccess: 'None'
+  }
+}
+
+
 
 // add encryptionkeysets
 
@@ -647,4 +706,4 @@ resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = 
     }
   }
 }
-
+output diskencryptset_IDout string = diskencryptId

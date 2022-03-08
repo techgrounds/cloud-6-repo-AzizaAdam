@@ -149,9 +149,7 @@ resource accesspolies_vault 'Microsoft.KeyVault/vaults/accessPolicies@2021-10-01
         objectId: diskencrptionset.identity.principalId
         permissions: {
           keys: [
-            'get'
-            'wrapKey'
-            'unwrapKey'
+              objectId: '0c9e9953-88ce-4c99-ab40-441e61a26060'
           ]
           secrets: []
           certificates: []

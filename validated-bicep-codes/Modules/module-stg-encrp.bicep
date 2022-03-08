@@ -21,7 +21,7 @@ param policyoperation string = 'add'
 
 @description('The name of the Storage Account')
 param storageAccountName string = 'store${uniqueString(resourceGroup().id)}' 
-param storageblobName string = 'storblob${uniqueString(resourceGroup().id)}'
+param storageblob string = 'blob${uniqueString(resourceGroup().id)}'
 param containerName string = 'cont${uniqueString(resourceGroup().id)}'
 
 
@@ -65,7 +65,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
     accessPolicies: [
       {
         tenantId: tenantid
-        objectId: userAssignedIdentity.properties.principalId
+        objectId: '0c9e9953-88ce-4c99-ab40-441e61a26060'
         permissions: {
           keys: [
             'get'
@@ -263,9 +263,9 @@ resource storage 'Microsoft.Storage/storageAccounts@2021-08-01' = {
   }
 }
 
-resource store_blob 'Microsoft.Storage/storageAccounts/blobServices@2021-08-01' = {
+resource store_blob 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
   parent: storage
-  name: 'default'
+  name: storageblob
   properties: {
     changeFeed: {
       enabled: false
@@ -293,7 +293,7 @@ resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/contai
   name: containerName
   parent: store_blob
   properties: {
-    defaultEncryptionScope: '$account-encryption-key'
+    defaultEncryptionScope: diskencrypsets.id
     denyEncryptionScopeOverride: false
     immutableStorageWithVersioning: {
       enabled: false
