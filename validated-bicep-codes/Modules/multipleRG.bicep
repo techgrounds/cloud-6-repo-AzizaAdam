@@ -1,22 +1,23 @@
+//az deployment sub create --location westeurope --template-file multipleRG.bicep 
 targetScope = 'subscription'
 
 param location string = deployment().location
 
 param resourceGroupNames array = [
-  'test23'
-  'test24'
-  'test25'
-  'test26'
-  'test27'
-  'test28'
-  'test29'
-  'test30'
-  'test31'
-  'test32'
-  'test33'
-  'test34'
-  'test35'
-  'test36'
+  'test37'
+  'test38'
+  'test39'
+  'test40'
+  'test41'
+  'test42'
+  'test43'
+  'test44'
+  'test45'
+  'test46'
+  'test47'
+  'test48'
+  'test49'
+  'test50'
 
 ]
 

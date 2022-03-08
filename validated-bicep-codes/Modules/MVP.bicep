@@ -1,3 +1,4 @@
+//VMs, Vnets, storageaccount, blob, conatainer, keyvault, managedID,encryptionsets
 //vnet module
 param location string = 'westeurope'
 param environment string = 'test'
@@ -350,8 +351,10 @@ param vm_linwebserver_name string = 'webserver'
 param vm_windowsadmin_name string = 'adminserver'
 
 // Sample key data, please adjust the urls to point to a new location or simply provide the data as a string.
-param pubkey string
-param passadmin string 
+param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEabevnUvL/PNEbqD42T5yfpsnN4c8EtBTjLMlyNffxGMsndbrpc5pr0aGP2GHfpT9F9uzqovFcswYnTrtieWXSnghuLynGICs9A6CACz0+M2lGvJ9Lnde9GZpjeIMe2AaOR4/jVYwdcu99Q6kkZx0I/tJzHXX7xMWAP2gFevYg7njQbTEyOGuTODfLwsC0oRNl+rE6xumWNiEvc+QuW75VboZwAepfboZtgwpCvsF2P+b0d1zKD0kP1YlISnCJw9GTuw1AZcQo7AFIsWb9K2YT2OWjcyJY+EVkIMds8npmOp0idkwfGh7XWVcFVSRxbf+K3LwrfseqmJdzUm+CNUNuySRP8a+1i6F9nvWzDV7moPU699xWlAEKgYfzmr3HbL3kSHQGtE5/ao7OvNCL4hpFP+DBu6YS8EY0JbCCJkrjNe72gmp3y5DtsE2DYDNX+Ys4v+ylOgIwmhvK3Rm952x1qXno2ABn5NB/uG+GAetoeYmZ45f4iTqaFPtK94xguqogNQVmxs46fn9DwjIUzK39DAnUA9dLP5ABYYbQDhFlLqulASYz0l0PxvS3J29J+GVNAr++JSTGmh0nC7tmDEL73wKcVAHilAAiHcI/p3k7r26zzDc08i/u/CjWfY1YdknCqxl6r7X74h5zZGu+fV4mMIKZxQ== zizan@LAPTOP-0KOJ4O3B'
+
+
+param passadmin string = 'zizamyname@1982'
 
 var script64 = loadFileAsBase64('../bootstrapscript.sh') 
 
@@ -390,7 +393,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
     }
     osProfile: {
       computerName: vm_linwebserver_name
-      adminUsername: '${vm_linwebserver_name}user'
+      adminUsername: '${vm_linwebserver_name}'
       adminPassword: null
       linuxConfiguration: {
         disablePasswordAuthentication: true
@@ -398,7 +401,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
           publicKeys: [
             {
               keyData: pubkey
-              path: '/home/${vm_linwebserver_name}user/.ssh/authorized_keys'
+              path: '/home/${vm_linwebserver_name}/.ssh/authorized_keys'
             }
           ]
         }
@@ -503,8 +506,7 @@ output vm_admin_NAME_out string = vmAdmin_windows.name
 
 
 output adminUsername string = adminUsername
-output hostname string = pubipWebserver.properties.dnsSettings.fqdn
-output sshCommand string = 'ssh ${adminUsername}@${pubipWebserver.properties.dnsSettings.fqdn}'
+
 
 
 
@@ -525,7 +527,6 @@ param keyVaultKeyName string = 'key${uniqueString(resourceGroup().name)}'
 
 @description('The name of the Storage Account')
 param storageAccountName string = 'stg${uniqueString(resourceGroup().id)}' 
-param storageblob string = 'blob${uniqueString(resourceGroup().id)}'
 param containerName string = 'cont${uniqueString(resourceGroup().id)}'
 
 
@@ -602,6 +603,51 @@ resource kvKey 'Microsoft.KeyVault/vaults/keys@2021-06-01-preview' = {
   }
 }
 
+
+// add accesspolies to keyvault
+param policyoperation string = 'add'
+
+resource accesspolcies 'Microsoft.KeyVault/vaults/accessPolicies@2021-10-01' = {
+  name: policyoperation
+  parent: keyVault
+  properties: {
+    accessPolicies:[
+      {
+        tenantId: tenantId
+        objectId: diskEncryptionSets.identity.principalId
+        permissions: {
+          keys: [
+            'get'
+            'wrapKey'
+            'unwrapKey'
+            'encrypt'
+            'decrypt'
+          ]
+          secrets: []
+          certificates: []
+        }
+        
+      }
+      {
+        tenantId: tenantId
+        objectId: userAssignedIdentity.properties.principalId
+        permissions: {
+          keys: [
+            'get'
+            'list'
+            'unwrapKey'
+            'wrapKey'
+          ]
+          secrets: []
+          certificates: []
+        }
+      }
+    ]
+  }
+}
+
+output diskencrypt_ID_out string = diskEncryptionSets.id
+output kvurl_out string =  keyVault.properties.vaultUri
 
 // add storageaccount with custom managed encryption
 
