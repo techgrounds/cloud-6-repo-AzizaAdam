@@ -1,0 +1,342 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.1272.37030",
+      "templateHash": "10677613173906557363"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "The location into which the resources should be deployed."
+      }
+    },
+    "tenantsubid": {
+      "type": "string",
+      "defaultValue": "[subscription().tenantId]",
+      "metadata": {
+        "description": "The Tenant Id that should be used throughout the deployment."
+      }
+    },
+    "environment": {
+      "type": "string",
+      "defaultValue": "test"
+    },
+    "userAssignedIdentityName": {
+      "type": "string",
+      "defaultValue": "[format('userid{0}', uniqueString(resourceGroup().name))]",
+      "metadata": {
+        "description": "The name of the User Assigned Identity."
+      }
+    },
+    "keyVaultName": {
+      "type": "string",
+      "defaultValue": "[format('keyVault{0}', uniqueString(resourceGroup().name))]",
+      "metadata": {
+        "description": "The name of the Key Vault."
+      }
+    },
+    "keyVaultKeyName": {
+      "type": "string",
+      "defaultValue": "[format('key{0}', uniqueString(resourceGroup().name))]",
+      "metadata": {
+        "description": "Name of the key in the Key Vault"
+      }
+    },
+    "diskencrypsetname": {
+      "type": "string",
+      "defaultValue": "[format('encrypset{0}', parameters('environment'))]"
+    },
+    "policyoperation": {
+      "type": "string",
+      "defaultValue": "add"
+    },
+    "storageAccountName": {
+      "type": "string",
+      "defaultValue": "[format('store{0}', uniqueString(resourceGroup().id))]",
+      "metadata": {
+        "description": "The name of the Storage Account"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "apiVersion": "2018-11-30",
+      "name": "[parameters('userAssignedIdentityName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2021-06-01-preview",
+      "name": "[parameters('keyVaultName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "sku": {
+          "name": "standard",
+          "family": "A"
+        },
+        "enabledForDeployment": true,
+        "enabledForDiskEncryption": true,
+        "enabledForTemplateDeployment": true,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": 9,
+        "enableRbacAuthorization": false,
+        "enablePurgeProtection": true,
+        "publicNetworkAccess": "Enabled",
+        "tenantId": "[parameters('tenantsubid')]",
+        "accessPolicies": [
+          {
+            "tenantId": "[parameters('tenantsubid')]",
+            "objectId": "88ad0edb-f4f4-4dda-8d16-c6d5c372bef3",
+            "permissions": {
+              "keys": [
+                "get",
+                "list",
+                "update",
+                "create",
+                "import",
+                "delete",
+                "recover",
+                "backup",
+                "restore",
+                "getrotationpolicy",
+                "setrotationpolicy",
+                "rotate"
+              ],
+              "secrets": [
+                "get",
+                "list",
+                "set",
+                "delete",
+                "recover",
+                "backup",
+                "restore"
+              ],
+              "certificates": [
+                "get",
+                "list",
+                "update",
+                "create",
+                "import",
+                "delete",
+                "recover",
+                "backup",
+                "restore",
+                "managecontacts",
+                "manageissuers",
+                "getissuers",
+                "listissuers",
+                "setissuers",
+                "deleteissuers"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/keys",
+      "apiVersion": "2021-06-01-preview",
+      "name": "[format('{0}/{1}', parameters('keyVaultName'), parameters('keyVaultKeyName'))]",
+      "properties": {
+        "attributes": {
+          "enabled": true
+        },
+        "keySize": 4096,
+        "kty": "RSA",
+        "keyOps": [
+          "encrypt",
+          "decrypt",
+          "sign",
+          "unwrapKey",
+          "verify",
+          "wrapKey"
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Compute/diskEncryptionSets",
+      "apiVersion": "2021-08-01",
+      "name": "[parameters('diskencrypsetname')]",
+      "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "activeKey": {
+          "sourceVault": {
+            "id": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+          },
+          "keyUrl": "[reference(resourceId('Microsoft.KeyVault/vaults/keys', parameters('keyVaultName'), parameters('keyVaultKeyName'))).keyUriWithVersion]"
+        },
+        "encryptionType": "EncryptionAtRestWithCustomerKey",
+        "rotationToLatestKeyVersionEnabled": true
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.KeyVault/vaults/keys', parameters('keyVaultName'), parameters('keyVaultKeyName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/accessPolicies",
+      "apiVersion": "2021-10-01",
+      "name": "[format('{0}/{1}', parameters('keyVaultName'), parameters('policyoperation'))]",
+      "properties": {
+        "accessPolicies": [
+          {
+            "tenantId": "[parameters('tenantsubid')]",
+            "objectId": "[reference(resourceId('Microsoft.Compute/diskEncryptionSets', parameters('diskencrypsetname')), '2021-08-01', 'full').identity.principalId]",
+            "permissions": {
+              "keys": [
+                "get",
+                "wrapKey",
+                "unwrapKey"
+              ],
+              "secrets": [],
+              "certificates": []
+            }
+          },
+          {
+            "tenantId": "[parameters('tenantsubid')]",
+            "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentityName'))).principalId]",
+            "permissions": {
+              "keys": [
+                "get",
+                "list",
+                "unwrapKey",
+                "wrapKey"
+              ],
+              "secrets": [],
+              "certificates": []
+            }
+          }
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/diskEncryptionSets', parameters('diskencrypsetname'))]",
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentityName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-08-01",
+      "name": "[parameters('storageAccountName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "[format('{0}', reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentityName')), '2018-11-30', 'full'))]": {}
+        }
+      },
+      "properties": {
+        "defaultToOAuthAuthentication": false,
+        "allowCrossTenantReplication": false,
+        "minimumTlsVersion": "TLS1_0",
+        "allowBlobPublicAccess": false,
+        "allowSharedKeyAccess": true,
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "identity": {
+            "userAssignedIdentity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentityName'))]"
+          },
+          "requireInfrastructureEncryption": false,
+          "keyvaultproperties": {
+            "keyvaulturi": "[reference(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))).vaultUri]",
+            "keyname": "[parameters('keyVaultKeyName')]"
+          },
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "table": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "queue": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Keyvault"
+        },
+        "accessTier": "Hot"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.KeyVault/vaults/keys', parameters('keyVaultName'), parameters('keyVaultKeyName'))]",
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentityName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2021-08-01",
+      "name": "[format('{0}/{1}', parameters('storageAccountName'), 'default')]",
+      "properties": {
+        "changeFeed": {
+          "enabled": false
+        },
+        "restorePolicy": {
+          "enabled": false
+        },
+        "containerDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        },
+        "deleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        },
+        "isVersioningEnabled": false
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "userAssignedIdentity_out": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentityName'))]"
+    },
+    "diskencryptset_IDout": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Compute/diskEncryptionSets', parameters('diskencrypsetname'))]"
+    },
+    "diskencrypt_IDout": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Compute/diskEncryptionSets', parameters('diskencrypsetname'))]"
+    },
+    "kvurl_out": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))).vaultUri]"
+    }
+  }
+}

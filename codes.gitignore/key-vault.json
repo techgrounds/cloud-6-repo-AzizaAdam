@@ -1,0 +1,199 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vaults_keyvault77909_name": {
+            "defaultValue": "keyvault77909",
+            "type": "String"
+        },
+        "virtualnetworks_vnet_subnet1_externalid": {
+            "defaultValue": "/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourceGroups/project/providers/microsoft.network/virtualnetworks/vnet-subnet1",
+            "type": "String"
+        },
+        "virtualnetworks_vnet_subnet2_externalid": {
+            "defaultValue": "/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourceGroups/project/providers/microsoft.network/virtualnetworks/vnet-subnet2",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2021-11-01-preview",
+            "name": "[parameters('vaults_keyvault77909_name')]",
+            "location": "westeurope",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "Standard"
+                },
+                "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "defaultAction": "Allow",
+                    "ipRules": [],
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat(parameters('virtualnetworks_vnet_subnet1_externalid'), '/subnets/default')]",
+                            "ignoreMissingVnetServiceEndpoint": false
+                        },
+                        {
+                            "id": "[concat(parameters('virtualnetworks_vnet_subnet2_externalid'), '/subnets/default')]",
+                            "ignoreMissingVnetServiceEndpoint": false
+                        }
+                    ]
+                },
+                "accessPolicies": [
+                    {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "objectId": "2ac95fd8-9277-4adb-80c8-af41d0c73dad",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "List",
+                                "UnwrapKey",
+                                "WrapKey"
+                            ],
+                            "secrets": [],
+                            "certificates": []
+                        }
+                    },
+                    {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "objectId": "0c9e9953-88ce-4c99-ab40-441e61a26060",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "Decrypt",
+                                "Encrypt",
+                                "UnwrapKey",
+                                "WrapKey",
+                                "Verify",
+                                "Sign",
+                                "Purge",
+                                "Rotate",
+                                "GetRotationPolicy",
+                                "SetRotationPolicy"
+                            ],
+                            "secrets": [
+                                "Get",
+                                "List",
+                                "Set",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "Purge"
+                            ],
+                            "certificates": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "ManageContacts",
+                                "ManageIssuers",
+                                "GetIssuers",
+                                "ListIssuers",
+                                "SetIssuers",
+                                "DeleteIssuers",
+                                "Purge"
+                            ]
+                        }
+                    },
+                    {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "objectId": "ee09dadb-e944-4392-a486-562c4d7732c7",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "Decrypt",
+                                "Encrypt",
+                                "UnwrapKey",
+                                "WrapKey",
+                                "Verify",
+                                "Sign",
+                                "Purge",
+                                "Rotate",
+                                "GetRotationPolicy",
+                                "SetRotationPolicy"
+                            ],
+                            "secrets": [
+                                "Get",
+                                "List",
+                                "Set",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "Purge"
+                            ],
+                            "certificates": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "ManageContacts",
+                                "ManageIssuers",
+                                "GetIssuers",
+                                "ListIssuers",
+                                "SetIssuers",
+                                "DeleteIssuers",
+                                "Purge"
+                            ]
+                        }
+                    }
+                ],
+                "enabledForDeployment": true,
+                "enabledForDiskEncryption": true,
+                "enabledForTemplateDeployment": true,
+                "enableSoftDelete": true,
+                "softDeleteRetentionInDays": 90,
+                "enableRbacAuthorization": false,
+                "enablePurgeProtection": true,
+                "vaultUri": "[concat('https://', parameters('vaults_keyvault77909_name'), '.vault.azure.net/')]",
+                "provisioningState": "Succeeded",
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/keys",
+            "apiVersion": "2021-11-01-preview",
+            "name": "[concat(parameters('vaults_keyvault77909_name'), '/encryptionDisckey')]",
+            "location": "westeurope",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_keyvault77909_name'))]"
+            ],
+            "properties": {
+                "attributes": {
+                    "enabled": true
+                }
+            }
+        }
+    ]
+}

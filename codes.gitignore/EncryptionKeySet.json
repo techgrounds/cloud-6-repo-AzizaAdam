@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "diskEncryptionSets_encryptionset_project_name": {
+            "defaultValue": "encryptionset-project",
+            "type": "String"
+        },
+        "vaults_keyvault77909_externalid": {
+            "defaultValue": "/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourceGroups/project/providers/Microsoft.KeyVault/vaults/keyvault77909",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/diskEncryptionSets",
+            "apiVersion": "2021-08-01",
+            "name": "[parameters('diskEncryptionSets_encryptionset_project_name')]",
+            "location": "westeurope",
+            "tags": {
+                "project": "encryptionSet"
+            },
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "activeKey": {
+                    "sourceVault": {
+                        "id": "[parameters('vaults_keyvault77909_externalid')]"
+                    },
+                    "keyUrl": "https://keyvault77909.vault.azure.net/keys/encryptionDisckey/ca3e86a4045f436dbbf76749d2c85ac9"
+                },
+                "encryptionType": "EncryptionAtRestWithCustomerKey",
+                "rotationToLatestKeyVersionEnabled": true
+            }
+        }
+    ]

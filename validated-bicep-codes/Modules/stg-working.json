@@ -1,0 +1,315 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccounts_stgtest8989_name": {
+            "defaultValue": "stgtest8989",
+            "type": "String"
+        },
+        "vaults_keyVaulthypf3t2h23bdi_name": {
+            "defaultValue": "keyVaulthypf3t2h23bdi",
+            "type": "String"
+        },
+        "diskEncryptionSets_encrypsettest_name": {
+            "defaultValue": "encrypsettest",
+            "type": "String"
+        },
+        "userAssignedIdentities_useridhypf3t2h23bdi_name": {
+            "defaultValue": "useridhypf3t2h23bdi",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2021-11-01-preview",
+            "name": "[parameters('vaults_keyVaulthypf3t2h23bdi_name')]",
+            "location": "westeurope",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "standard"
+                },
+                "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                "accessPolicies": [
+                    {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "objectId": "0c9e9953-88ce-4c99-ab40-441e61a26060",
+                        "permissions": {
+                            "keys": [
+                                "get",
+                                "list",
+                                "update",
+                                "create",
+                                "import",
+                                "delete",
+                                "recover",
+                                "backup",
+                                "restore",
+                                "getrotationpolicy",
+                                "setrotationpolicy",
+                                "rotate"
+                            ],
+                            "secrets": [
+                                "get",
+                                "list",
+                                "set",
+                                "delete",
+                                "recover",
+                                "backup",
+                                "restore"
+                            ],
+                            "certificates": [
+                                "get",
+                                "list",
+                                "update",
+                                "create",
+                                "import",
+                                "delete",
+                                "recover",
+                                "backup",
+                                "restore",
+                                "managecontacts",
+                                "manageissuers",
+                                "getissuers",
+                                "listissuers",
+                                "setissuers",
+                                "deleteissuers"
+                            ]
+                        }
+                    },
+                    {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "objectId": "d73be657-b737-4b1e-86d1-cd3b6a3516a6",
+                        "permissions": {
+                            "keys": [
+                                "get",
+                                "wrapKey",
+                                "unwrapKey"
+                            ],
+                            "secrets": [],
+                            "certificates": []
+                        }
+                    },
+                    {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "objectId": "73780064-3157-405c-8f1c-4dff276497c9",
+                        "permissions": {
+                            "keys": [
+                                "get",
+                                "list",
+                                "unwrapKey",
+                                "wrapKey"
+                            ],
+                            "secrets": [],
+                            "certificates": []
+                        }
+                    }
+                ],
+                "enabledForDeployment": true,
+                "enabledForDiskEncryption": true,
+                "enabledForTemplateDeployment": true,
+                "enableSoftDelete": true,
+                "softDeleteRetentionInDays": 9,
+                "enableRbacAuthorization": false,
+                "enablePurgeProtection": true,
+                "vaultUri": "https://keyvaulthypf3t2h23bdi.vault.azure.net/",
+                "provisioningState": "Succeeded",
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+            "apiVersion": "2018-11-30",
+            "name": "[parameters('userAssignedIdentities_useridhypf3t2h23bdi_name')]",
+            "location": "westeurope"
+        },
+        {
+            "type": "Microsoft.Compute/diskEncryptionSets",
+            "apiVersion": "2021-08-01",
+            "name": "[parameters('diskEncryptionSets_encrypsettest_name')]",
+            "location": "westeurope",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_keyVaulthypf3t2h23bdi_name'))]"
+            ],
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "activeKey": {
+                    "sourceVault": {
+                        "id": "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_keyVaulthypf3t2h23bdi_name'))]"
+                    },
+                    "keyUrl": "https://keyvaulthypf3t2h23bdi.vault.azure.net/keys/keyhypf3t2h23bdi/ce5705caab3c436ca42846353f4c020f"
+                },
+                "encryptionType": "EncryptionAtRestWithCustomerKey",
+                "rotationToLatestKeyVersionEnabled": true
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/keys",
+            "apiVersion": "2021-11-01-preview",
+            "name": "[concat(parameters('vaults_keyVaulthypf3t2h23bdi_name'), '/keyhypf3t2h23bdi')]",
+            "location": "westeurope",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_keyVaulthypf3t2h23bdi_name'))]"
+            ],
+            "properties": {
+                "attributes": {
+                    "enabled": true
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-08-01",
+            "name": "[parameters('storageAccounts_stgtest8989_name')]",
+            "location": "westeurope",
+            "dependsOn": [
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_useridhypf3t2h23bdi_name'))]"
+            ],
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "identity": {
+                "type": "UserAssigned",
+                "userAssignedIdentities": {
+                    "/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourceGroups/test8/providers/Microsoft.ManagedIdentity/userAssignedIdentities/useridhypf3t2h23bdi": {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "identityUrl": "https://control-westeurope.identity.azure.net/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourcegroups/test8/providers/Microsoft.Storage/storageAccounts/stgtest8989/credentials/v2/userassigned?arpid=eee4bc0c-b333-4370-aba0-40083be36159&uaid=769f8cff-3432-4df7-b337-010ee503badd&tid=de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "certRenewAfter": "2022-04-19T12:59:00Z"
+                    }
+                }
+            },
+            "properties": {
+                "defaultToOAuthAuthentication": false,
+                "allowCrossTenantReplication": true,
+                "minimumTlsVersion": "TLS1_2",
+                "allowBlobPublicAccess": true,
+                "allowSharedKeyAccess": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "identity": {
+                        "userAssignedIdentity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_useridhypf3t2h23bdi_name'))]"
+                    },
+                    "requireInfrastructureEncryption": false,
+                    "keyvaultproperties": {
+                        "keyvaulturi": "https://keyvaulthypf3t2h23bdi.vault.azure.net",
+                        "keyname": "keyhypf3t2h23bdi"
+                    },
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "table": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "queue": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Keyvault"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat(parameters('storageAccounts_stgtest8989_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_stgtest8989_name'))]"
+            ],
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "changeFeed": {
+                    "enabled": false
+                },
+                "restorePolicy": {
+                    "enabled": false
+                },
+                "containerDeleteRetentionPolicy": {
+                    "enabled": true,
+                    "days": 7
+                },
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": true,
+                    "days": 7
+                },
+                "isVersioningEnabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat(parameters('storageAccounts_stgtest8989_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_stgtest8989_name'))]"
+            ],
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "protocolSettings": {
+                    "smb": {}
+                },
+                "cors": {
+                    "corsRules": []
+                },
+                "shareDeleteRetentionPolicy": {
+                    "enabled": true,
+                    "days": 7
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/queueServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat(parameters('storageAccounts_stgtest8989_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_stgtest8989_name'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/tableServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat(parameters('storageAccounts_stgtest8989_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_stgtest8989_name'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        }
+    ]
+}

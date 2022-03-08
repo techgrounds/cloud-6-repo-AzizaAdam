@@ -1,0 +1,103 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccounts_demostorsgeaccount_name": {
+            "defaultValue": "demostorsgeaccount",
+            "type": "String"
+        },
+        "userAssignedIdentities_identitydeom1_externalid": {
+            "defaultValue": "/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourceGroups/demo1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identitydeom1",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-08-01",
+            "name": "[parameters('storageAccounts_demostorsgeaccount_name')]",
+            "location": "westeurope",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "BlobStorage",
+            "identity": {
+                "type": "UserAssigned",
+                "userAssignedIdentities": {
+                    "/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourceGroups/demo1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identitydeom1": {
+                        "tenantId": "de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "identityUrl": "https://control-westeurope.identity.azure.net/subscriptions/88ad0edb-f4f4-4dda-8d16-c6d5c372bef3/resourcegroups/demo1/providers/Microsoft.Storage/storageAccounts/demostorsgeaccount/credentials/v2/userassigned?arpid=f1cc9685-01ef-4bd7-9942-bb9e04fee0f3&uaid=f8063cf3-666b-46b0-b780-52e07abb653c&tid=de60b253-74bd-4365-b598-b9e55a2b208d",
+                        "certRenewAfter": "2022-04-09T11:47:00Z"
+                    }
+                }
+            },
+            "properties": {
+                "minimumTlsVersion": "TLS1_0",
+                "allowBlobPublicAccess": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "identity": {
+                        "userAssignedIdentity": "[parameters('userAssignedIdentities_identitydeom1_externalid')]"
+                    },
+                    "keyvaultproperties": {
+                        "keyvaulturi": "https://kv1982.vault.azure.net",
+                        "keyname": "stgencrtption"
+                    },
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Keyvault"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat(parameters('storageAccounts_demostorsgeaccount_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_demostorsgeaccount_name'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": false
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/tableServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat(parameters('storageAccounts_demostorsgeaccount_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_demostorsgeaccount_name'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        }
+    ]
+}

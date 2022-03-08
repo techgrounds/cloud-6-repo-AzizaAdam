@@ -1,0 +1,161 @@
+
+@description('The location into which the resources should be deployed.')
+param location string = resourceGroup().location
+
+@description('The Tenant Id that should be used throughout the deployment.')
+param tenantId string = subscription().tenantId
+
+@description('The name of the User Assigned Identity.')
+param userAssignedIdentityName string= 'userid${uniqueString(resourceGroup().name)}' 
+
+@description('The name of the Key Vault.')
+param keyVaultName string = 'keyVault${uniqueString(resourceGroup().name)}' 
+
+@description('Name of the key in the Key Vault')
+param keyVaultKeyName string = 'key${uniqueString(resourceGroup().name)}' 
+
+@description('The name of the Storage Account')
+param storageAccountName string = 'stg${uniqueString(resourceGroup().id)}' 
+
+
+
+resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
+  name: userAssignedIdentityName
+  location: location
+}
+
+resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
+  name: keyVaultName
+  location: location
+  properties: {
+    sku: {
+      name: 'standard'
+      family: 'A'
+    }
+    enableSoftDelete: true
+    enablePurgeProtection: true
+    enabledForDeployment: true
+    enabledForDiskEncryption: true
+    enabledForTemplateDeployment: true
+    tenantId: tenantId
+    accessPolicies: [
+      {
+        tenantId: tenantId
+        permissions: {
+          keys: [
+            'unwrapKey'
+            'wrapKey'
+            'get'
+            'list'
+          ]
+        }
+        objectId: userAssignedIdentity.properties.principalId
+      }
+    ]
+  }
+}
+
+resource kvKey 'Microsoft.KeyVault/vaults/keys@2021-06-01-preview' = {
+  parent: keyVault
+  name: keyVaultKeyName
+  properties: {
+    attributes: {
+      enabled: true
+    }
+    keySize: 4096
+    kty: 'RSA'
+  }
+}
+
+
+// add storageaccount with custom managed encryption
+
+
+resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+  name: storageAccountName
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${userAssignedIdentity.id}': {}
+    }
+  }
+  properties: {
+    accessTier: 'Hot'
+    supportsHttpsTrafficOnly: true
+    minimumTlsVersion: 'TLS1_2'
+    encryption: {
+      identity: {
+        userAssignedIdentity: userAssignedIdentity.id
+      }
+      services: {
+         blob: {
+           enabled: true
+         }
+      }
+      keySource: 'Microsoft.Keyvault'
+      keyvaultproperties: {
+        keyname: kvKey.name
+        keyvaulturi: endsWith(keyVault.properties.vaultUri,'/') ? substring(keyVault.properties.vaultUri,0,length(keyVault.properties.vaultUri)-1) : keyVault.properties.vaultUri
+      }
+    }
+  }
+}
+
+
+// add encryptionkeysets
+
+param encryptionkeysetsName string = 'encryptionketset${uniqueString(resourceGroup().name)}'
+ 
+
+resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = {
+  name: encryptionkeysetsName
+  location: location
+  tags: {
+    project: 'encryptionSet'
+  }
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties:{
+    activeKey:{
+      sourceVault:{
+        id: keyVault.id
+      }
+      keyUrl: kvKey.properties.keyUriWithVersion
+    }
+  }
+}
+ 
+// validated bicep file ready to use
+
+resource virtualNetwork_admin 'Microsoft.Network/virtualNetworks@2019-11-01' = {
+  name: 'adminVnet'
+  location: location
+  properties: {
+    addressSpace: {
+      addressPrefixes: [
+        '10.0.0.0/16'
+      ]
+    }
+    subnets: [
+      {
+        name: 'Subnet-1'
+        properties: {
+          addressPrefix: '10.0.0.0/24'
+        }
+      }
+      {
+        name: 'Subnet-2'
+        properties: {
+          addressPrefix: '10.0.1.0/24'
+        }
+      }
+    ]
+  }
+}
+
