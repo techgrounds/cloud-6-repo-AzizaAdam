@@ -356,7 +356,7 @@ param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEab
 
 param passadmin string = 'zizamyname@1982'
 
-var script64 = loadFileAsBase64('../bootstrapscript.sh') 
+var script64 = loadFileAsBase64('./bootstrapscript.sh') 
 
 
 resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {

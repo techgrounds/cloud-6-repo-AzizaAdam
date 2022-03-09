@@ -27,7 +27,7 @@ param vm_windowsadmin_name string = 'vmAdmin${environment}'
 param pubkey string
 param passadmin string 
 
-var script64 = loadFileAsBase64('../bootstrapscript.sh') 
+var script64 = loadFileAsBase64('./bootstrapscript.sh') 
 
 resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: vm_linwebserver_name

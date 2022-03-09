@@ -356,7 +356,7 @@ param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEab
 
 param passadmin string = 'zizamyname@1982'
 
-var script64 = loadFileAsBase64('../bootstrapscript.sh') 
+var script64 = loadFileAsBase64('./bootstrapscript.sh') 
 
 
 resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
@@ -755,7 +755,6 @@ resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = 
 output diskencryptset_IDout string = diskencryptId
 
 
-
 // adding backup and recovery vault service and backup policies
 
 
@@ -800,41 +799,5 @@ resource recovaultpolicy 'Microsoft.RecoveryServices/vaults/backupPolicies@2021-
     }
     instantRpRetentionRangeInDays: 2
     timeZone: 'W. Europe Standard Time'
-  }
-}
-
-
-// adding protected container and protected item for the recovervault service for both webApp server and admin server
-param vmWebApp string = vm_linwebserver_NAME_in
-param vm_linwebserver_NAME_in string = vm_linwebserver_name
-param vmAdmin string = vm_windowsadmin_NAME_in
-param vm_windowsadmin_NAME_in string = vm_windowsadmin_name
-
-
-
-var pContainer_vmwebserv = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_linwebserver_name}'
-var pItem_vmwebserv = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_linwebserver_NAME_in}'
-var pContainer_vmadmin = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_windowsadmin_name}'
-var pItem_vmadmin = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_windowsadmin_NAME_in}'
-var backupFabric = 'Azurex'
-
-
-
-
-resource protecteditem_webAppserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
-  name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmwebserv}/${pItem_vmwebserv}'
-  properties: {
-    protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: recovaultpolicy.id
-    sourceResourceId: vm_linwebserver_NAME_in
-  }
-} 
-
-resource protecteditem_adminserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
-  name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmadmin}/${pItem_vmadmin}'
-  properties: {
-    protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: recovaultpolicy.id
-    sourceResourceId: vm_windowsadmin_NAME_in
   }
 }

@@ -1,4 +1,3 @@
-//VMs, Vnets, storageaccount, blob, conatainer, keyvault, managedID,encryptionsets
 //vnet module
 param location string = 'westeurope'
 param environment string = 'test'
@@ -22,7 +21,7 @@ resource vnetAppServer 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   properties: {
     addressSpace: {
       addressPrefixes: [
-        '10.0.0.0/24'
+        '10.2.0.0/16'
       ]
     }
     
@@ -37,7 +36,7 @@ resource vnetAppServer 'Microsoft.Network/virtualNetworks@2021-05-01' = {
 resource webAppSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   name: '${vnet1}/webserv_subnet'
   properties: {
-    addressPrefix: '10.0.0.0/26'
+    addressPrefix: '10.20.20.0/28'
     networkSecurityGroup: {
       id: nsgwebApp.id
     }
@@ -70,7 +69,7 @@ resource vnetwebApppeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeer
     allowGatewayTransit: false
     useRemoteGateways: false
     remoteVirtualNetwork: {
-      id: vnetAdmin.id
+      id: vnetAppServer.id
     }
   }
   dependsOn: [
@@ -135,7 +134,7 @@ resource nsgwebApp_rules_SSH 'Microsoft.Network/networkSecurityGroups/securityRu
     sourceAddressPrefix: nic_winadmin.properties.ipConfigurations[0].properties.privateIPAddress
     destinationAddressPrefix: nic_webserver.properties.ipConfigurations[0].properties.privateIPAddress
     access: 'Allow'
-    priority: 150
+    priority: 140
     direction: 'Inbound'
   }
 }
@@ -160,7 +159,7 @@ resource vnetAdmin 'Microsoft.Network/virtualNetworks@2020-11-01' = {
 resource AdminSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   name: '${vnet2}/admin_subnet'
   properties: {
-    addressPrefix: '20.0.0.0/28'
+    addressPrefix: '20.10.10.0/26'
     networkSecurityGroup: {
       id: nsgAdmin.id
     }
@@ -188,11 +187,11 @@ resource vnetAdminPeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeeri
   name: '${vnet2}-${vnet1}'
   properties: {
     allowVirtualNetworkAccess: true
-    allowForwardedTraffic: true
+    allowForwardedTraffic: false
     allowGatewayTransit: false
     useRemoteGateways: false
     remoteVirtualNetwork: {
-      id: vnetAppServer.id
+      id: vnet2
     }
   }
   dependsOn: [
@@ -240,7 +239,7 @@ resource pubipWebserver 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
     tier: 'Regional'
   }
   zones: [
-    '1'
+    '2'
   ]
   properties:{
     publicIPAllocationMethod:'Static'
@@ -255,7 +254,7 @@ resource pubipAdminserver 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
     tier: 'Regional'
   }
   zones: [
-    '1'
+    '2'
   ]
   properties:{
     publicIPAllocationMethod:'Static'
@@ -273,7 +272,7 @@ resource nic_webserver 'Microsoft.Network/networkInterfaces@2020-11-01' = {
           privateIPAddress: '10.20.20.4'
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
-            id: pubipWebserver.id
+            id: pubipWebApp_name
           }
           subnet: {
             id: webAppSubnet.id
@@ -299,10 +298,10 @@ resource nic_winadmin 'Microsoft.Network/networkInterfaces@2020-11-01' = {
       {
         name: 'ipconfig1'
         properties: {
-          privateIPAddress: '20.10.10.4'
+          privateIPAddress: '10.10.10.4'
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
-            id: pubipAdminserver.id
+            id: pubipAdmin_name
           }
           subnet: {
             id: AdminSubnet.id
@@ -322,48 +321,31 @@ resource nic_winadmin 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 output nicadmin_out string = nic_winadmin.id
 output nicwebserver_out string = nic_webserver.id
 
-
 // adding webserver Linux VM
 // adding admin server Windows 
 // webApp server = Linux VM
 // Admin management server = Windows VM
 
 
-@description('Username for the Virtual Machine.')
-param adminUsername string
+param diskencryptId string 
+param nic_id_admin string = nicAdmin_name
+param nic_id_webserver string = nicWebserver_name
 
-@description('Type of authentication to use on the Virtual Machine. SSH key is recommended.')
-@allowed([
-  'sshPublicKey'
-  'password'
-])
-param authenticationType string = 'password'
 
-@description('SSH Key or password for the Virtual Machine. SSH key is recommended.')
-@secure()
-param adminPasswordOrKey string
-
-@description('Unique DNS Name for the Public IP used to access the Virtual Machine.')
-param dnsLabelPrefix string = toLower('simplelinuxvm-${uniqueString(resourceGroup().id)}')
-
-param diskencryptId string = encryptionkeysetsName
-param vm_linwebserver_name string = 'webserver'
-param vm_windowsadmin_name string = 'adminserver'
+param vm_linwebserver_name string = 'vmWebApp-${environment}'
+param vm_windowsadmin_name string = 'vmAdmin${environment}'
 
 // Sample key data, please adjust the urls to point to a new location or simply provide the data as a string.
-param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEabevnUvL/PNEbqD42T5yfpsnN4c8EtBTjLMlyNffxGMsndbrpc5pr0aGP2GHfpT9F9uzqovFcswYnTrtieWXSnghuLynGICs9A6CACz0+M2lGvJ9Lnde9GZpjeIMe2AaOR4/jVYwdcu99Q6kkZx0I/tJzHXX7xMWAP2gFevYg7njQbTEyOGuTODfLwsC0oRNl+rE6xumWNiEvc+QuW75VboZwAepfboZtgwpCvsF2P+b0d1zKD0kP1YlISnCJw9GTuw1AZcQo7AFIsWb9K2YT2OWjcyJY+EVkIMds8npmOp0idkwfGh7XWVcFVSRxbf+K3LwrfseqmJdzUm+CNUNuySRP8a+1i6F9nvWzDV7moPU699xWlAEKgYfzmr3HbL3kSHQGtE5/ao7OvNCL4hpFP+DBu6YS8EY0JbCCJkrjNe72gmp3y5DtsE2DYDNX+Ys4v+ylOgIwmhvK3Rm952x1qXno2ABn5NB/uG+GAetoeYmZ45f4iTqaFPtK94xguqogNQVmxs46fn9DwjIUzK39DAnUA9dLP5ABYYbQDhFlLqulASYz0l0PxvS3J29J+GVNAr++JSTGmh0nC7tmDEL73wKcVAHilAAiHcI/p3k7r26zzDc08i/u/CjWfY1YdknCqxl6r7X74h5zZGu+fV4mMIKZxQ== zizan@LAPTOP-0KOJ4O3B'
+param pubkey string
+param passadmin string 
 
-
-param passadmin string = 'zizamyname@1982'
-
-var script64 = loadFileAsBase64('../bootstrapscript.sh') 
-
+var script64 = loadFileAsBase64('./bootstrapscript.sh') // sample boostrap script. Adjust corresponding script to adjust Userdata or provide new path.
 
 resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: vm_linwebserver_name
   location: location
   zones: [
-    '1'
+    '2'
   ]
   properties: {
     userData: script64
@@ -383,7 +365,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
         caching: 'ReadWrite'
         managedDisk: {
           diskEncryptionSet: {
-            id: diskEncryptionSets.id
+            id: diskencryptId
           }
           storageAccountType: 'StandardSSD_LRS'
         }
@@ -393,7 +375,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
     }
     osProfile: {
       computerName: vm_linwebserver_name
-      adminUsername: '${vm_linwebserver_name}'
+      adminUsername: '${vm_linwebserver_name}user'
       adminPassword: null
       linuxConfiguration: {
         disablePasswordAuthentication: true
@@ -401,7 +383,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
           publicKeys: [
             {
               keyData: pubkey
-              path: '/home/${vm_linwebserver_name}/.ssh/authorized_keys'
+              path: '/home/${vm_linwebserver_name}user/.ssh/authorized_keys'
             }
           ]
         }
@@ -418,7 +400,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
     networkProfile: {
       networkInterfaces: [
         {
-          id: nic_webserver.id
+          id: nic_id_webserver
           properties: {
             deleteOption: 'Detach'
           }
@@ -437,7 +419,7 @@ resource vmAdmin_windows 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: vm_windowsadmin_name
   location: location
   zones: [
-    '1'
+    '2'
   ]
   properties: {
     hardwareProfile: {
@@ -456,7 +438,7 @@ resource vmAdmin_windows 'Microsoft.Compute/virtualMachines@2021-11-01' = {
         caching: 'ReadWrite'
         managedDisk: {
           diskEncryptionSet: {
-            id: diskEncryptionSets.id
+            id: diskencryptId
           }
           storageAccountType: 'StandardSSD_LRS'
         }
@@ -484,7 +466,7 @@ resource vmAdmin_windows 'Microsoft.Compute/virtualMachines@2021-11-01' = {
     networkProfile: {
       networkInterfaces: [
         {
-          id: nic_winadmin.id
+          id: nic_id_admin
           properties: {
             deleteOption: 'Detach'
           }
@@ -504,337 +486,3 @@ output vm_web_NAME_out string = vmLinuxwebserver.name
 output vm_admin_ID_out string = vmAdmin_windows.id
 output vm_admin_NAME_out string = vmAdmin_windows.name
 
-
-output adminUsername string = adminUsername
-
-
-
-
-//adding storage account and encryption resourses
-
-
-@description('The Tenant Id that should be used throughout the deployment.')
-param tenantId string = subscription().tenantId
-
-@description('The name of the User Assigned Identity.')
-param userAssignedIdentityName string= 'userid${uniqueString(resourceGroup().name)}' 
-
-@description('The name of the Key Vault.')
-param keyVaultName string = 'keyVault${uniqueString(resourceGroup().name)}' 
-
-@description('Name of the key in the Key Vault')
-param keyVaultKeyName string = 'key${uniqueString(resourceGroup().name)}' 
-
-@description('The name of the Storage Account')
-param storageAccountName string = 'stg${uniqueString(resourceGroup().id)}' 
-param containerName string = 'cont${uniqueString(resourceGroup().id)}'
-
-
-
-resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
-  name: userAssignedIdentityName
-  location: location
-}
-
-resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
-  name: keyVaultName
-  location: location
-  properties: {
-    sku: {
-      name: 'standard'
-      family: 'A'
-    }
-    enableSoftDelete: true
-    enablePurgeProtection: true
-    enabledForDeployment: true
-    enabledForDiskEncryption: true
-    enabledForTemplateDeployment: true
-    tenantId: tenantId
-    accessPolicies: [
-      {
-        tenantId: tenantId
-        permissions: {
-          keys: [
-            'backup'
-            'create'
-            'decrypt'
-            'delete'
-            'encrypt'
-            'get'
-            'getrotationpolicy'
-            'import'
-            'list'
-            'purge'
-            'recover'
-            'release'
-            'restore'
-            'rotate'
-            'setrotationpolicy'
-            'sign'
-            'unwrapKey'
-            'update'
-            'verify'
-            'wrapKey'
-          ]
-        }
-        objectId: userAssignedIdentity.properties.principalId
-      }
-    ]
-  }
-}
-
-resource kvKey 'Microsoft.KeyVault/vaults/keys@2021-06-01-preview' = {
-  parent: keyVault
-  name: keyVaultKeyName
-  properties: {
-    attributes: {
-      enabled: true
-    }
-    keySize: 4096
-    kty: 'RSA'
-    keyOps: [
-      'encrypt'
-      'decrypt'
-      'sign'
-      'unwrapKey'
-      'verify'
-      'wrapKey'
-    ]
-  }
-}
-
-
-// add accesspolies to keyvault
-param policyoperation string = 'add'
-
-resource accesspolcies 'Microsoft.KeyVault/vaults/accessPolicies@2021-10-01' = {
-  name: policyoperation
-  parent: keyVault
-  properties: {
-    accessPolicies:[
-      {
-        tenantId: tenantId
-        objectId: diskEncryptionSets.identity.principalId
-        permissions: {
-          keys: [
-            'get'
-            'wrapKey'
-            'unwrapKey'
-            'encrypt'
-            'decrypt'
-          ]
-          secrets: []
-          certificates: []
-        }
-        
-      }
-      {
-        tenantId: tenantId
-        objectId: userAssignedIdentity.properties.principalId
-        permissions: {
-          keys: [
-            'get'
-            'list'
-            'unwrapKey'
-            'wrapKey'
-          ]
-          secrets: []
-          certificates: []
-        }
-      }
-    ]
-  }
-}
-
-output diskencrypt_ID_out string = diskEncryptionSets.id
-output kvurl_out string =  keyVault.properties.vaultUri
-
-// add storageaccount with custom managed encryption
-
-
-resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
-  name: storageAccountName
-  location: location
-  sku: {
-    name: 'Standard_LRS'
-  }
-  kind: 'StorageV2'
-  identity: {
-    type: 'UserAssigned'
-    userAssignedIdentities: {
-      '${userAssignedIdentity.id}': {}
-    }
-  }
-  properties: {
-    accessTier: 'Hot'
-    supportsHttpsTrafficOnly: true
-    minimumTlsVersion: 'TLS1_2'
-    encryption: {
-      identity: {
-        userAssignedIdentity: userAssignedIdentity.id
-      }
-      services: {
-         blob: {
-           enabled: true
-         }
-      }
-      keySource: 'Microsoft.Keyvault'
-      keyvaultproperties: {
-        keyname: kvKey.name
-        keyvaulturi: endsWith(keyVault.properties.vaultUri,'/') ? substring(keyVault.properties.vaultUri,0,length(keyVault.properties.vaultUri)-1) : keyVault.properties.vaultUri
-      }
-    }
-  }
-}
-
-//add blob storage
-
-resource store_blob 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
-  parent: storage
-  name: 'default'
-  properties: {
-    changeFeed: {
-      enabled: false
-    }
-    restorePolicy: {
-      enabled: false
-    }
-    containerDeleteRetentionPolicy: {
-      enabled: true
-      days: 7
-    }
-
-    deleteRetentionPolicy: {
-      enabled: true
-      days: 7
-    }
-    isVersioningEnabled: false
-  }
-}
-
-// adding container 
-
-resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-08-01' = {
-  name: containerName
-  parent: store_blob
-  properties: {
-    defaultEncryptionScope: '$account-encryption-key'
-    denyEncryptionScopeOverride: false
-    immutableStorageWithVersioning: {
-      enabled: false
-    }
-    publicAccess: 'None'
-  }
-}
-
-
-
-// add encryptionkeysets
-
-param encryptionkeysetsName string = 'encryptionketset${uniqueString(resourceGroup().name)}'
- 
-
-resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = {
-  name: encryptionkeysetsName
-  location: location
-  tags: {
-    project: 'encryptionSet'
-  }
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties:{
-    activeKey:{
-      sourceVault:{
-        id: keyVault.id
-      }
-      keyUrl: kvKey.properties.keyUriWithVersion
-    }
-  }
-}
-output diskencryptset_IDout string = diskencryptId
-
-
-
-// adding backup and recovery vault service and backup policies
-
-
-param recoveryvault_name string = 'recovault-${environment}'
-param dailybackup_policy string = 'dailypolicy-${environment}'
-
-resource recoveryvault 'Microsoft.RecoveryServices/vaults@2021-11-01-preview' = {
-  name: recoveryvault_name
-  location: location
-  sku: {
-    name: 'RS0'
-    tier: 'Standard'
-  }
-  properties: {}
-}
-
-
-resource recovaultpolicy 'Microsoft.RecoveryServices/vaults/backupPolicies@2021-12-01' = {
-  parent: recoveryvault
-  name: dailybackup_policy
-  properties: {
-    backupManagementType: 'AzureIaasVM'
-    schedulePolicy: {
-      schedulePolicyType: 'SimpleSchedulePolicy'
-      scheduleRunFrequency: 'Daily'
-      scheduleRunTimes: [
-        '2022-03-22T23:00:00Z'
-      ]
-      scheduleWeeklyFrequency: 0
-    }
-    retentionPolicy: {
-      retentionPolicyType: 'LongTermRetentionPolicy'
-      dailySchedule: {
-        retentionTimes: [
-          '2022-03-22T23:00:00Z'
-        ]
-        retentionDuration: {
-          count: 7
-          durationType: 'Days'
-        }
-      }
-    }
-    instantRpRetentionRangeInDays: 2
-    timeZone: 'W. Europe Standard Time'
-  }
-}
-
-
-// adding protected container and protected item for the recovervault service for both webApp server and admin server
-param vmWebApp string = vm_linwebserver_NAME_in
-param vm_linwebserver_NAME_in string = vm_linwebserver_name
-param vmAdmin string = vm_windowsadmin_NAME_in
-param vm_windowsadmin_NAME_in string = vm_windowsadmin_name
-
-
-
-var pContainer_vmwebserv = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_linwebserver_name}'
-var pItem_vmwebserv = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_linwebserver_NAME_in}'
-var pContainer_vmadmin = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_windowsadmin_name}'
-var pItem_vmadmin = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_windowsadmin_NAME_in}'
-var backupFabric = 'Azurex'
-
-
-
-
-resource protecteditem_webAppserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
-  name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmwebserv}/${pItem_vmwebserv}'
-  properties: {
-    protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: recovaultpolicy.id
-    sourceResourceId: vm_linwebserver_NAME_in
-  }
-} 
-
-resource protecteditem_adminserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
-  name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmadmin}/${pItem_vmadmin}'
-  properties: {
-    protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: recovaultpolicy.id
-    sourceResourceId: vm_windowsadmin_NAME_in
-  }
-}
