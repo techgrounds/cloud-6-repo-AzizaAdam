@@ -753,3 +753,65 @@ resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = 
   }
 }
 output diskencryptset_IDout string = diskencryptId
+
+
+
+// adding backup and recovery vault service and backup policies
+
+
+param recoveryvault_name string = 'recovault-${environment}'
+param dailybackup_policy string = 'dailypolicy-${environment}'
+
+resource recoveryvault 'Microsoft.RecoveryServices/vaults@2021-11-01-preview' = {
+  name: recoveryvault_name
+  location: location
+  sku: {
+    name: 'RS0'
+    tier: 'Standard'
+  }
+  properties: {}
+}
+
+
+resource recovaultpolicy 'Microsoft.RecoveryServices/vaults/backupPolicies@2021-12-01' = {
+  parent: recoveryvault
+  name: dailybackup_policy
+  properties: {
+    backupManagementType: 'AzureIaasVM'
+    schedulePolicy: {
+      schedulePolicyType: 'SimpleSchedulePolicy'
+      scheduleRunFrequency: 'Daily'
+      scheduleRunTimes: [
+        '2022-03-22T23:00:00Z'
+      ]
+      scheduleWeeklyFrequency: 0
+    }
+    retentionPolicy: {
+      retentionPolicyType: 'LongTermRetentionPolicy'
+      dailySchedule: {
+        retentionTimes: [
+          '2022-03-22T23:00:00Z'
+        ]
+        retentionDuration: {
+          count: 7
+          durationType: 'Days'
+        }
+      }
+    }
+    instantRpRetentionRangeInDays: 2
+    timeZone: 'W. Europe Standard Time'
+  }
+}
+// adding protected container and protected item for the recovervault service for both webApp server and admin server
+param vmWebApp string = vm_linwebserver_NAME_in
+param vm_linwebserver_NAME_in string = vm_linwebserver_name
+param vmAdmin string = vm_windowsadmin_NAME_in
+param vm_windowsadmin_NAME_in string = vm_windowsadmin_name
+
+
+
+var pContainer_vmwebserv = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_linwebserver_name}'
+var pItem_vmwebserv = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_linwebserver_NAME_in}'
+var pContainer_vmadmin = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_windowsadmin_name}'
+var pItem_vmadmin = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_windowsadmin_NAME_in}'
+var backupFabric = 'Azurex'

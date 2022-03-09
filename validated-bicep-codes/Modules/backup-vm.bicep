@@ -755,21 +755,11 @@ resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = 
 output diskencryptset_IDout string = diskencryptId
 
 
-// adding backup and recovery vault service
+// adding backup and recovery vault service and backup policies
 
-param vmWebApp_ID_in string 
-param vm_web_NAME_in string 
-param vm_admin_ID_in string
-param vm_admin_NAME_in string
 
 param recoveryvault_name string = 'recovault-${environment}'
 param dailybackup_policy string = 'dailypolicy-${environment}'
-
-var pContainer_vmwebserv = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_web_NAME_in}'
-var pItem_vmwebserv = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_web_NAME_in}'
-var pContainer_vmadmin = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_admin_NAME_in}'
-var pItem_vmadmin = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_admin_NAME_in}'
-var backupFabric = 'Azurex'
 
 resource recoveryvault 'Microsoft.RecoveryServices/vaults@2021-11-01-preview' = {
   name: recoveryvault_name
@@ -811,22 +801,3 @@ resource recovaultpolicy 'Microsoft.RecoveryServices/vaults/backupPolicies@2021-
     timeZone: 'W. Europe Standard Time'
   }
 }
-
-resource protecteditem_vmserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
-  name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmwebserv}/${pItem_vmwebserv}'
-  properties: {
-    protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: recovaultpolicy.id
-    sourceResourceId: vmWebApp_ID_in
-  }
-} 
-
-resource protecteditem_adminserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
-  name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmadmin}/${pItem_vmadmin}'
-  properties: {
-    protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: recovaultpolicy.id
-    sourceResourceId: vm_admin_ID_in
-  }
-} 
-

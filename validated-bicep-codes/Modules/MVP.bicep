@@ -1,6 +1,6 @@
 //VMs, Vnets, storageaccount, blob, conatainer, keyvault, managedID,encryptionsets
 //vnet module
-param location string = 'westeurope'
+param location string = resourceGroup().location
 param environment string = 'test'
 param vnet1 string = 'vnet_webserver_${environment}'
 param vnet2 string = 'vnet_adminserver_${environment}'
@@ -753,3 +753,51 @@ resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = 
   }
 }
 output diskencryptset_IDout string = diskencryptId
+
+
+// adding backup and recovery vault service and backup policies
+
+
+param recoveryvault_name string = 'recovault-${environment}'
+param dailybackup_policy string = 'dailypolicy-${environment}'
+
+resource recoveryvault 'Microsoft.RecoveryServices/vaults@2021-11-01-preview' = {
+  name: recoveryvault_name
+  location: location
+  sku: {
+    name: 'RS0'
+    tier: 'Standard'
+  }
+  properties: {}
+}
+
+
+resource recovaultpolicy 'Microsoft.RecoveryServices/vaults/backupPolicies@2021-12-01' = {
+  parent: recoveryvault
+  name: dailybackup_policy
+  properties: {
+    backupManagementType: 'AzureIaasVM'
+    schedulePolicy: {
+      schedulePolicyType: 'SimpleSchedulePolicy'
+      scheduleRunFrequency: 'Daily'
+      scheduleRunTimes: [
+        '2022-03-22T23:00:00Z'
+      ]
+      scheduleWeeklyFrequency: 0
+    }
+    retentionPolicy: {
+      retentionPolicyType: 'LongTermRetentionPolicy'
+      dailySchedule: {
+        retentionTimes: [
+          '2022-03-22T23:00:00Z'
+        ]
+        retentionDuration: {
+          count: 7
+          durationType: 'Days'
+        }
+      }
+    }
+    instantRpRetentionRangeInDays: 2
+    timeZone: 'W. Europe Standard Time'
+  }
+}
