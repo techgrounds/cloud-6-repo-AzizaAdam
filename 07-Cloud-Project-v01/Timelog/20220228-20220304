@@ -1,0 +1,68 @@
+## Log [28-02-22]
+ 
+## Dagverslag (1 zin)
+Start building virtual machine module.
+ 
+## Obstakels
+SSH key generation.
+ 
+## Oplossingen
+ I use microsoft documentation.
+## Learnings
+I understood a bit how it works.
+ 
+
+## Log [01-03-22]
+ 
+## Dagverslag (1 zin)
+Deoplying webApp server Linux
+ 
+## Obstakels
+Apache server automation.
+ 
+## Oplossingen
+ I used bootscript to be added to custom data during depolyment of  the server.
+## Learnings
+I understood how to run Apache server in Linux VM.
+ 
+
+## Log [02-03-22]
+ 
+## Dagverslag (1 zin)
+Deoplying Windows 2022 data center for the admin server.
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ NA
+## Learnings
+I understood how to depoly Windows VM.
+
+## Log [03-03-22]
+ 
+## Dagverslag (1 zin)
+Adding recovervault and backup plan to the VMs
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+NA
+## Learnings
+I understood how to depoly recovery vault and backup plan with protected items and containers.
+
+
+
+## Log [04-03-22]
+ 
+## Dagverslag (1 zin)
+Getting errors when depolying my services vnet encrytpion and VMs.
+ 
+## Obstakels
+Authentication problem and dependencies problem.
+ 
+## Oplossingen
+Trials and errors
+## Learnings
+Still trying to figureout what went wrong.

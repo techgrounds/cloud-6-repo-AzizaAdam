@@ -1,0 +1,67 @@
+## Log [07-02-22]
+ 
+## Dagverslag (1 zin)
+Learning biceps, formulation of points of discussion with the product owner (Coen) tomorrow.
+ 
+## Obstakels
+Lack of background knoweldege in Bicep.
+ 
+## Oplossingen
+ I use microsoft documentation and there the Biceps and different deployment template are available with detailed description.
+## Learnings
+I understood how Biceps work and have made demovnet.
+ 
+
+## Log [08-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying Linux VM to act as web app server for the project, I added the required backup plan and have custom dat to run Apache server, however still need to figureout how to automate the bootstrapping user data through uplaoded file to a container in the blob storage account.
+ 
+## Obstakels
+Little hands on experience in azure platfrom.
+ 
+## Oplossingen
+ Still looking for solutions.
+## Learnings
+I understood how to depoly linux VM with custom data and adjusted backup plan.
+
+
+## Log [09-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying storage account for the project with customer based encryption through the portal. First I made a key vault then managed identity and added the object principal ID to a policy in the key vault then I used this managed identity to allow customer based encryption for the storage account.
+ 
+## Obstakels
+Limited hands on experience in azure platfrom.
+ 
+## Oplossingen
+ We got some tips from the LC (Coen)
+## Learnings
+I understood how key vault service works.
+ 
+
+## Log [10-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying Linux VM to act as web app server for the project, I added the required backup plan and have custom dat to run Apache server.
+ 
+## Obstakels
+No problems.
+ 
+## Oplossingen
+
+## Learnings
+I understood how to depoly linux VM with custom data and adjusted backup plan.
+
+## Log [11-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying Linux VM to act as web app server for the project, I added the required backup plan and have custom dat to run Apache server, however still need to figureout how to automate the bootstrapping user data through uplaoded file to a container in the blob storage account.
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ 
+## Learnings
+I understood how to depoly linux VM with custom data and adjusted backup plan.

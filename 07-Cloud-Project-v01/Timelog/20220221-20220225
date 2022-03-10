@@ -1,0 +1,68 @@
+## Log [21-02-22]
+ 
+## Dagverslag (1 zin)
+Learning biceps, intermediate module.
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ I use microsoft documentation and there the Biceps and different deployment template are available with detailed description.
+## Learnings
+I understood how Biceps work and a bit about dependencies.
+ 
+
+## Log [22-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying managedID and keyvault.
+ 
+## Obstakels
+Little hands on experience in Bicep
+ 
+## Oplossingen
+ form my group I got nice tips
+## Learnings
+I understood how to depoly keyvault and managed ID
+
+
+## Log [23-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying ecryptionset to allow for discencryption for the virtaul machines
+ 
+## Obstakels
+Authentication to keyvault and managed ID
+ 
+## Oplossingen
+ Try and error and through example templates
+## Learnings
+I understood how authentication works.
+ 
+
+## Log [24-02-22]
+ 
+## Dagverslag (1 zin)
+Learning Bicep intermedaite path.
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ NA
+
+## Learnings
+I understood more Bicep.
+
+## Log [25-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying sotrage account with custom managed encryption.
+ 
+## Obstakels
+Keyvault authentication problem.
+ 
+## Oplossingen
+ By try and error and scripting related services in one module.
+## Learnings
+I understood how to depoly dependant resources.

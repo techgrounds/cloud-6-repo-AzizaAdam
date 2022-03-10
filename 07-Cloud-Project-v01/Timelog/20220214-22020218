@@ -1,0 +1,67 @@
+## Log [14-02-22]
+ 
+## Dagverslag (1 zin)
+Learning biceps, fundamentals from Azure docs and YouTube tutorials.
+ 
+## Obstakels
+Lack of background knoweldege in Bicep.
+ 
+## Oplossingen
+ I use microsoft documentation and there the Biceps and different deployment template are available with detailed description.
+## Learnings
+I understood how Biceps work and did some expermentations.
+ 
+
+## Log [15-02-22]
+ 
+## Dagverslag (1 zin)
+Continu learning Bicep and perfrom demo Bicep templates.
+ 
+## Obstakels
+Little hands on experience in Bicep.
+ 
+## Oplossingen
+ Learning and keep learning for sure 
+## Learnings
+I understood how to build simple Bicep templates..
+
+
+## Log [16-02-22]
+ 
+## Dagverslag (1 zin)
+Plan my code stages which resources first and which one depends on which one.
+## Obstakels
+NA
+ 
+## Oplossingen
+ NA
+## Learnings
+I learnt about dependencies between services.
+ 
+
+## Log [17-02-22]
+ 
+## Dagverslag (1 zin)
+Deoplying 2 vnets with subnets.
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+NA
+
+## Learnings
+I understood how to depoly vnets through Bicep code (IaC)
+
+## Log [18-02-22]
+ 
+## Dagverslag (1 zin)
+I added peering for my vnets to be able to communicate.
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ NA
+## Learnings
+I understood how to apply network peering
