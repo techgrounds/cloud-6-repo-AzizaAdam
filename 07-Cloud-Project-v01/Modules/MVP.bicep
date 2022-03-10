@@ -51,12 +51,9 @@ param adminUsername string
   'sshPublicKey'
   'password'
 ])
-param authenticationType string = 'password'
+param authenticationType string = 'sshPublicKey'
 @description('SSH Key or password for the Virtual Machine. SSH key is recommended.')
-@secure()
-param adminPasswordOrKey string
-@description('Unique DNS Name for the Public IP used to access the Virtual Machine.')
-param dnsLabelPrefix string = toLower('simplelinuxvm-${uniqueString(resourceGroup().id)}')
+
 param diskencryptId string = encryptionkeysetsName
 param vm_linwebserver_name string = 'webserver'
 param vm_windowsadmin_name string = 'adminserver'
@@ -720,7 +717,7 @@ resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/contai
   }
 }
 
-// add encryptionkeysets
+// add encryptionkeysets 
 
 resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = {
   name: encryptionkeysetsName
