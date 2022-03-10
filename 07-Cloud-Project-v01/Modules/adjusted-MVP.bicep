@@ -1,6 +1,5 @@
-//VMs, Vnets, storageaccount, blob, conatainer, keyvault, managedID, encryptionsets, recovery service and backup plan
-
-//params vnet and NSGs
+//VMs, Vnets, storageaccount, blob, conatainer, keyvault, managedID,encryptionsets
+//vnet module
 param location string = resourceGroup().location
 param environment string = 'test'
 param vnet1 string = 'vnet_webserver_${environment}'
@@ -20,17 +19,52 @@ param encryptionkeysetsName string = 'encryptionketset${uniqueString(resourceGro
 param policyoperation string = 'add'
 
 // params storage account, blobstroage, container, keyvault, managedId
+
 @description('The Tenant Id that should be used throughout the deployment.')
 param tenantId string = subscription().tenantId
+
 @description('The name of the User Assigned Identity.')
 param userAssignedIdentityName string= 'userid${uniqueString(resourceGroup().name)}' 
+
 @description('The name of the Key Vault.')
 param keyVaultName string = 'keyVault${uniqueString(resourceGroup().name)}' 
+
 @description('Name of the key in the Key Vault')
 param keyVaultKeyName string = 'key${uniqueString(resourceGroup().name)}' 
+
 @description('The name of the Storage Account')
 param storageAccountName string = 'stg${uniqueString(resourceGroup().id)}' 
 param containerName string = 'cont${uniqueString(resourceGroup().id)}'
+
+
+// params VMs (webApp server Linux, Admin server Windows0
+@description('Username for the Virtual Machine.')
+param adminUsername string
+
+@description('Type of authentication to use on the Virtual Machine. SSH key is recommended.')
+@allowed([
+  'sshPublicKey'
+  'password'
+])
+param authenticationType string = 'password'
+
+@description('SSH Key or password for the Virtual Machine. SSH key is recommended.')
+@secure()
+param adminPasswordOrKey string
+
+@description('Unique DNS Name for the Public IP used to access the Virtual Machine.')
+param dnsLabelPrefix string = toLower('simplelinuxvm-${uniqueString(resourceGroup().id)}')
+
+param diskencryptId string = encryptionkeysetsName
+param vm_linwebserver_name string = 'webserver'
+param vm_windowsadmin_name string = 'adminserver'
+
+// Sample key data, please adjust the urls to point to a new location or simply provide the data as a string.
+param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEabevnUvL/PNEbqD42T5yfpsnN4c8EtBTjLMlyNffxGMsndbrpc5pr0aGP2GHfpT9F9uzqovFcswYnTrtieWXSnghuLynGICs9A6CACz0+M2lGvJ9Lnde9GZpjeIMe2AaOR4/jVYwdcu99Q6kkZx0I/tJzHXX7xMWAP2gFevYg7njQbTEyOGuTODfLwsC0oRNl+rE6xumWNiEvc+QuW75VboZwAepfboZtgwpCvsF2P+b0d1zKD0kP1YlISnCJw9GTuw1AZcQo7AFIsWb9K2YT2OWjcyJY+EVkIMds8npmOp0idkwfGh7XWVcFVSRxbf+K3LwrfseqmJdzUm+CNUNuySRP8a+1i6F9nvWzDV7moPU699xWlAEKgYfzmr3HbL3kSHQGtE5/ao7OvNCL4hpFP+DBu6YS8EY0JbCCJkrjNe72gmp3y5DtsE2DYDNX+Ys4v+ylOgIwmhvK3Rm952x1qXno2ABn5NB/uG+GAetoeYmZ45f4iTqaFPtK94xguqogNQVmxs46fn9DwjIUzK39DAnUA9dLP5ABYYbQDhFlLqulASYz0l0PxvS3J29J+GVNAr++JSTGmh0nC7tmDEL73wKcVAHilAAiHcI/p3k7r26zzDc08i/u/CjWfY1YdknCqxl6r7X74h5zZGu+fV4mMIKZxQ== zizan@LAPTOP-0KOJ4O3B'
+
+param passadmin string = 'zizamyname@1982'
+
+var script64 = loadFileAsBase64('./bootstrapscript.sh') 
 
 
 // params for protected item, container for the recovery-vault and backup services
@@ -41,34 +75,6 @@ param webProtect string = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_lin
 param webcontainer string = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_linwebserver_name}'
 param admincontainer string = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_windowsadmin_name}'
 param fabricName string = 'Azurex'
-
-
-// params VMs (webApp server Linux, Admin server Windows)
-@description('Username for the Virtual Machine.')
-param adminUsername string
-@description('Type of authentication to use on the Virtual Machine. SSH key is recommended.')
-@allowed([
-  'sshPublicKey'
-  'password'
-])
-param authenticationType string = 'password'
-@description('SSH Key or password for the Virtual Machine. SSH key is recommended.')
-@secure()
-param adminPasswordOrKey string
-@description('Unique DNS Name for the Public IP used to access the Virtual Machine.')
-param dnsLabelPrefix string = toLower('simplelinuxvm-${uniqueString(resourceGroup().id)}')
-param diskencryptId string = encryptionkeysetsName
-param vm_linwebserver_name string = 'webserver'
-param vm_windowsadmin_name string = 'adminserver'
-
-
-// public ssh key data, provide the data as a string or you can refer to the file location were the data is stored.
-param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEabevnUvL/PNEbqD42T5yfpsnN4c8EtBTjLMlyNffxGMsndbrpc5pr0aGP2GHfpT9F9uzqovFcswYnTrtieWXSnghuLynGICs9A6CACz0+M2lGvJ9Lnde9GZpjeIMe2AaOR4/jVYwdcu99Q6kkZx0I/tJzHXX7xMWAP2gFevYg7njQbTEyOGuTODfLwsC0oRNl+rE6xumWNiEvc+QuW75VboZwAepfboZtgwpCvsF2P+b0d1zKD0kP1YlISnCJw9GTuw1AZcQo7AFIsWb9K2YT2OWjcyJY+EVkIMds8npmOp0idkwfGh7XWVcFVSRxbf+K3LwrfseqmJdzUm+CNUNuySRP8a+1i6F9nvWzDV7moPU699xWlAEKgYfzmr3HbL3kSHQGtE5/ao7OvNCL4hpFP+DBu6YS8EY0JbCCJkrjNe72gmp3y5DtsE2DYDNX+Ys4v+ylOgIwmhvK3Rm952x1qXno2ABn5NB/uG+GAetoeYmZ45f4iTqaFPtK94xguqogNQVmxs46fn9DwjIUzK39DAnUA9dLP5ABYYbQDhFlLqulASYz0l0PxvS3J29J+GVNAr++JSTGmh0nC7tmDEL73wKcVAHilAAiHcI/p3k7r26zzDc08i/u/CjWfY1YdknCqxl6r7X74h5zZGu+fV4mMIKZxQ== zizan@LAPTOP-0KOJ4O3B'
-param passadmin string = 'zizamyname@1982'
-
-// this script will deploy Apache2 in your webApp Linux server.
-var script64 = loadFileAsBase64('./bootstrapscript.sh') 
-
 
 
 // virtual network webApp server
@@ -525,7 +531,9 @@ output vm_admin_NAME_out string = vmAdmin_windows.name
 output adminUsername string = adminUsername
 
 
+
 //adding storage account and encryption resourses
+
 
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
   name: userAssignedIdentityName
@@ -720,7 +728,10 @@ resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/contai
   }
 }
 
+
 // add encryptionkeysets
+
+ 
 
 resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = {
   name: encryptionkeysetsName
@@ -742,8 +753,8 @@ resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = 
 }
 output diskencryptset_IDout string = diskencryptId
 
-
 // adding backup and recovery vault service and backup policies
+
 resource recoveryvault 'Microsoft.RecoveryServices/vaults@2021-11-01-preview' = {
   name: recoveryvault_name
   location: location
@@ -784,6 +795,7 @@ resource recovaultpolicy 'Microsoft.RecoveryServices/vaults/backupPolicies@2021-
   }
 }
 
+
 // adding protected container and protected item for the recovervault service for both webApp server and admin server
 
 
@@ -804,5 +816,6 @@ resource adminprotection 'Microsoft.RecoveryServices/vaults/backupFabrics/protec
     sourceResourceId: vmAdmin_windows.id
   }
 }
+
 
 
