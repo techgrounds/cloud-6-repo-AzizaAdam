@@ -2,7 +2,7 @@
 // all modules deploy successfully
 // https://app.diagrams.net/ link to make the design of the project
 targetScope = 'subscription'
-param environment string = 'test30'
+param environment string = 'test46'
 param resourceGname string = 'rg${uniqueString(environment)}'
 param location string = deployment().location 
 
@@ -28,6 +28,20 @@ module moduleVnet 'moduleVnet2.bicep' = {
   }
 }
 
+// adding vnet peering module 
+module vnetPeering 'moduleVnetPeering.bicep'={
+  scope: projectresourcegroup
+  name: 'module-vnetPeering'
+  params: {
+    vnetAdminId: moduleVnet.outputs.vnetAdminId
+    vnetAdminName: moduleVnet.outputs.adminvnetname
+    vnetvmssId: moduleVnet.outputs.vnetvmssId
+    vnetvmssname: moduleVnet.outputs.vnetvmssname
+  }
+  dependsOn:[
+    moduleVnet
+  ]
+}
 
 // Admin server module
 module moduleAdminserver 'module-adminserv.bicep' = {

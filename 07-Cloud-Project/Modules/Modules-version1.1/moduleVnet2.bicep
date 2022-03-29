@@ -385,51 +385,9 @@ resource nic_winadmin 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 }
 
 
-
-// adding peering service to vnetvmss for the AppServer vmss
-resource vnetwebApppeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2020-05-01' = {
-  parent: virtualNetworks_vmss
-  name: '${virtualNetworks_vmss_name}-${vnetadmin_name}'
-  properties: {
-    allowVirtualNetworkAccess: true
-    allowForwardedTraffic: false
-    allowGatewayTransit: false
-    useRemoteGateways: false
-    remoteVirtualNetwork: {
-      id: vnetAdmin.id
-    }
-  }
-  dependsOn:[
-    vnetAdmin
-    virtualNetworks_vmssSubnet
-    virtualNetworks_appGwSubnet
-  ]
-}
-
-// adding peering from vnetAdmin to vnet AppServer
-resource vnetAdminPeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2020-05-01' = {
-  parent: vnetAdmin
-  name: '${vnetadmin_name}-${virtualNetworks_vmss_name}'
-  properties: {
-    allowVirtualNetworkAccess: true
-    allowForwardedTraffic: true
-    allowGatewayTransit: false
-    useRemoteGateways: false
-    remoteVirtualNetwork: {
-      id: virtualNetworks_vmss.id
-    }
-  }
-  dependsOn:[
-    vnetAdmin
-    virtualNetworks_vmssSubnet
-    virtualNetworks_appGwSubnet
-  ]
-}
-
-
 output nicadminId string = nic_winadmin.id
 
-
+output vnetAdminName string = vnetAdmin.name
 output vnetAdminId string = vnetAdmin.id
 output adminvnetname string = vnetAdmin.name
 output vnetvmssId string = virtualNetworks_vmss.id

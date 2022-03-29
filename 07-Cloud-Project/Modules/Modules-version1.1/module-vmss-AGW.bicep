@@ -15,7 +15,7 @@ param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEab
 var script64 = loadFileAsBase64('./bootstrapscript.sh') 
  
 
-//gnerate SSL self signed certificate using the following link with the Bash CLI
+//generate SSL self signed certificate using the following link with the Bash CLI
 // https://www.ibm.com/docs/en/api-connect/2018.x?topic=overview-generating-self-signed-certificate-using-openssl
 
 
