@@ -61,9 +61,9 @@ param vm_windowsadmin_name string = 'adminserver'
 
 // public ssh key data, provide the data as a string or you can refer to the file location were the data is stored.
 param pubkey string = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvmAMi/zZWzXzEZEabevnUvL/PNEbqD42T5yfpsnN4c8EtBTjLMlyNffxGMsndbrpc5pr0aGP2GHfpT9F9uzqovFcswYnTrtieWXSnghuLynGICs9A6CACz0+M2lGvJ9Lnde9GZpjeIMe2AaOR4/jVYwdcu99Q6kkZx0I/tJzHXX7xMWAP2gFevYg7njQbTEyOGuTODfLwsC0oRNl+rE6xumWNiEvc+QuW75VboZwAepfboZtgwpCvsF2P+b0d1zKD0kP1YlISnCJw9GTuw1AZcQo7AFIsWb9K2YT2OWjcyJY+EVkIMds8npmOp0idkwfGh7XWVcFVSRxbf+K3LwrfseqmJdzUm+CNUNuySRP8a+1i6F9nvWzDV7moPU699xWlAEKgYfzmr3HbL3kSHQGtE5/ao7OvNCL4hpFP+DBu6YS8EY0JbCCJkrjNe72gmp3y5DtsE2DYDNX+Ys4v+ylOgIwmhvK3Rm952x1qXno2ABn5NB/uG+GAetoeYmZ45f4iTqaFPtK94xguqogNQVmxs46fn9DwjIUzK39DAnUA9dLP5ABYYbQDhFlLqulASYz0l0PxvS3J29J+GVNAr++JSTGmh0nC7tmDEL73wKcVAHilAAiHcI/p3k7r26zzDc08i/u/CjWfY1YdknCqxl6r7X74h5zZGu+fV4mMIKZxQ== zizan@LAPTOP-0KOJ4O3B'
-param passadmin string = 'zizamyname@1982'
+param passadmin string 
 
-// this script will deploy Apache2 in your webApp Linux server.
+// this script will automatically deploy Apache2 in your webApp Linux server.
 var script64 = loadFileAsBase64('./bootstrapscript.sh') 
 
 
@@ -135,7 +135,6 @@ resource vnetwebApppeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeer
 }
 
 // adding NSG for the webApp Server vnet
-
 resource nsgwebApp 'Microsoft.Network/networkSecurityGroups@2020-11-01' = {
   name: nsgwebApp_name
   location: location
@@ -372,6 +371,7 @@ resource nic_winadmin 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 output nicadmin_out string = nic_winadmin.id
 output nicwebserver_out string = nic_webserver.id
 
+
 // webApp server = Linux VM
 // Admin management server = Windows VM
 resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
@@ -408,7 +408,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
     }
     osProfile: {
       computerName: vm_linwebserver_name
-      adminUsername: '${vm_linwebserver_name}'
+      adminUsername: '${vm_linwebserver_name}user'
       adminPassword: null
       linuxConfiguration: {
         disablePasswordAuthentication: true
@@ -416,7 +416,7 @@ resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
           publicKeys: [
             {
               keyData: pubkey
-              path: '/home/${vm_linwebserver_name}/.ssh/authorized_keys'
+              path: '/home/${vm_linwebserver_name}user/.ssh/authorized_keys'
             }
           ]
         }
@@ -523,12 +523,13 @@ output adminUsername string = adminUsername
 
 
 //adding storage account and encryption resourses
-
+//adding managedID
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
   name: userAssignedIdentityName
   location: location
 }
 
+//adding keyvault
 resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
   name: keyVaultName
   location: location
@@ -597,7 +598,6 @@ resource kvKey 'Microsoft.KeyVault/vaults/keys@2021-06-01-preview' = {
 }
 
 // add accesspolies to keyvault
-
 resource accesspolcies 'Microsoft.KeyVault/vaults/accessPolicies@2021-10-01' = {
   name: policyoperation
   parent: keyVault
@@ -641,7 +641,6 @@ output diskencrypt_ID_out string = diskEncryptionSets.id
 output kvurl_out string =  keyVault.properties.vaultUri
 
 // add storageaccount with custom managed encryption
-
 resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: storageAccountName
   location: location
@@ -678,7 +677,6 @@ resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
 }
 
 //add blob storage
-
 resource store_blob 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
   parent: storage
   name: 'default'
@@ -703,7 +701,6 @@ resource store_blob 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' 
 }
 
 // adding container 
-
 resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-08-01' = {
   name: containerName
   parent: store_blob
@@ -718,7 +715,6 @@ resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/contai
 }
 
 // add encryptionkeysets 
-
 resource diskEncryptionSets 'Microsoft.Compute/diskEncryptionSets@2021-08-01' = {
   name: encryptionkeysetsName
   location: location

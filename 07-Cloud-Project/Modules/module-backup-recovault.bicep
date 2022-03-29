@@ -47,32 +47,23 @@ resource recovaultpolicy 'Microsoft.RecoveryServices/vaults/backupPolicies@2021-
     timeZone: 'W. Europe Standard Time'
   }
 }
-// adding protected container and protected item for the recovervault service for both webApp server and admin server
-param vm_web_ID_in string
-param vm_web_NAME_in string 
-param vm_admin_ID_in string
-param vm_admin_NAME_in string
 
-var pContainer_vmwebserv = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_web_NAME_in}'
-var pItem_vmwebserv = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_web_NAME_in}'
-var pContainer_vmadmin = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vm_admin_NAME_in}'
-var pItem_vmadmin = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vm_admin_NAME_in}'
+// adding protected container and protected item for the recovervault service for both webApp server and admin server
+
+param vmAdmin_windowsId string 
+param vmAdmin_windowsName string 
+
+var pContainer_vmadmin = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroup().name};${vmAdmin_windowsName}'
+var pItem_vmadmin = 'vm;iaasvmcontainerv2;${resourceGroup().name};${vmAdmin_windowsName}'
 var backupFabric = 'Azurex'
 
-resource protecteditem_webAppserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
-  name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmwebserv}/${pItem_vmwebserv}'
-  properties: {
-    protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: recovaultpolicy.id
-    sourceResourceId: vm_web_ID_in
-  }
-} 
+
 
 resource protecteditem_adminserver 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-12-01' = {
   name: '${recoveryvault_name}/${backupFabric}/${pContainer_vmadmin}/${pItem_vmadmin}'
   properties: {
     protectedItemType: 'Microsoft.Compute/virtualMachines'
     policyId: recovaultpolicy.id
-    sourceResourceId: vm_admin_ID_in
+    sourceResourceId: vmAdmin_windowsId
   }
 }

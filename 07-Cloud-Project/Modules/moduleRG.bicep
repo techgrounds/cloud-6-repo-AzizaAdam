@@ -10,7 +10,7 @@ resource projectresourcegroup 'Microsoft.Resources/resourceGroups@2021-04-01' = 
   location:location
   tags: {
     tagName1: 'testing'
-    tagName2: 'v1.0'
+    tagName2: 'v1.1'
   }
   managedBy: 'string'
   properties: {} 

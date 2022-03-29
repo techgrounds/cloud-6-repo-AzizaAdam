@@ -3,3 +3,5 @@
 *.doc
 *.docx
 *.gdoc
+codes.gitignore
+validated-bicep-codes

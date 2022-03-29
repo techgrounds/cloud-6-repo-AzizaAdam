@@ -1,5 +1,6 @@
+
 //vnet module
-param location string = 'westeurope'
+param location string = resourceGroup().location
 param environment string = 'test'
 param vnet1 string = 'vnet_webserver_${environment}'
 param vnet2 string = 'vnet_adminserver_${environment}'
@@ -11,6 +12,7 @@ param nicAdmin_name string = 'admin_nic_${environment}'
 param pubipWebApp_name string = 'webserver_ip_${environment}'
 param nicWebserver_name string = 'webserver_nic_${environment}'
 
+
 // virtual network webApp server
 resource vnetAppServer 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   name: vnet1
@@ -21,7 +23,7 @@ resource vnetAppServer 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   properties: {
     addressSpace: {
       addressPrefixes: [
-        '10.2.0.0/16'
+        '10.0.0.0/24'
       ]
     }
     
@@ -30,13 +32,12 @@ resource vnetAppServer 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   dependsOn: []
 }
 
-
 // adding subnet for webappServer vnet1
 
 resource webAppSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   name: '${vnet1}/webserv_subnet'
   properties: {
-    addressPrefix: '10.20.20.0/28'
+    addressPrefix: '10.0.0.0/26'
     networkSecurityGroup: {
       id: nsgwebApp.id
     }
@@ -69,7 +70,7 @@ resource vnetwebApppeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeer
     allowGatewayTransit: false
     useRemoteGateways: false
     remoteVirtualNetwork: {
-      id: vnetAppServer.id
+      id: vnetAdmin.id
     }
   }
   dependsOn: [
@@ -134,11 +135,10 @@ resource nsgwebApp_rules_SSH 'Microsoft.Network/networkSecurityGroups/securityRu
     sourceAddressPrefix: nic_winadmin.properties.ipConfigurations[0].properties.privateIPAddress
     destinationAddressPrefix: nic_webserver.properties.ipConfigurations[0].properties.privateIPAddress
     access: 'Allow'
-    priority: 140
+    priority: 150
     direction: 'Inbound'
   }
 }
-
 
 // adding vnetAdminServer
 resource vnetAdmin 'Microsoft.Network/virtualNetworks@2020-11-01' = {
@@ -154,12 +154,11 @@ resource vnetAdmin 'Microsoft.Network/virtualNetworks@2020-11-01' = {
   }
 }
 
-
 // adding subnet for vnet admin 
 resource AdminSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   name: '${vnet2}/admin_subnet'
   properties: {
-    addressPrefix: '20.10.10.0/26'
+    addressPrefix: '20.0.0.0/28'
     networkSecurityGroup: {
       id: nsgAdmin.id
     }
@@ -180,18 +179,17 @@ resource AdminSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   ]
 }
 
-
 // adding peering from vnetAdmin to vnet AppServer
 resource vnetAdminPeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2020-05-01' = {
   parent: vnetAdmin
   name: '${vnet2}-${vnet1}'
   properties: {
     allowVirtualNetworkAccess: true
-    allowForwardedTraffic: false
+    allowForwardedTraffic: true
     allowGatewayTransit: false
     useRemoteGateways: false
     remoteVirtualNetwork: {
-      id: vnet2
+      id: vnetAppServer.id
     }
   }
   dependsOn: [
@@ -199,7 +197,6 @@ resource vnetAdminPeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeeri
     webAppSubnet
   ]
 }
-
 
 // nsgroups and rules follow:
 resource nsgAdmin 'Microsoft.Network/networkSecurityGroups@2020-11-01' = {
@@ -230,7 +227,6 @@ resource nsgAdmin 'Microsoft.Network/networkSecurityGroups@2020-11-01' = {
   }
 }
 
-
 resource pubipWebserver 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: pubipWebApp_name
   location: location
@@ -239,7 +235,7 @@ resource pubipWebserver 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
     tier: 'Regional'
   }
   zones: [
-    '2'
+    '1'
   ]
   properties:{
     publicIPAllocationMethod:'Static'
@@ -254,7 +250,7 @@ resource pubipAdminserver 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
     tier: 'Regional'
   }
   zones: [
-    '2'
+    '1'
   ]
   properties:{
     publicIPAllocationMethod:'Static'
@@ -272,7 +268,7 @@ resource nic_webserver 'Microsoft.Network/networkInterfaces@2020-11-01' = {
           privateIPAddress: '10.20.20.4'
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
-            id: pubipWebApp_name
+            id: pubipWebserver.id
           }
           subnet: {
             id: webAppSubnet.id
@@ -298,10 +294,10 @@ resource nic_winadmin 'Microsoft.Network/networkInterfaces@2020-11-01' = {
       {
         name: 'ipconfig1'
         properties: {
-          privateIPAddress: '10.10.10.4'
+          privateIPAddress: '20.10.10.4'
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
-            id: pubipAdmin_name
+            id: pubipAdminserver.id
           }
           subnet: {
             id: AdminSubnet.id
@@ -318,171 +314,14 @@ resource nic_winadmin 'Microsoft.Network/networkInterfaces@2020-11-01' = {
     enableIPForwarding: false
   }
 }
-output nicadmin_out string = nic_winadmin.id
+
+
 output nicwebserver_out string = nic_webserver.id
-
-// adding webserver Linux VM
-// adding admin server Windows 
-// webApp server = Linux VM
-// Admin management server = Windows VM
-
-
-param diskencryptId string 
-param nic_id_admin string = nicAdmin_name
-param nic_id_webserver string = nicWebserver_name
-
-
-param vm_linwebserver_name string = 'vmWebApp-${environment}'
-param vm_windowsadmin_name string = 'vmAdmin${environment}'
-
-// Sample key data, please adjust the urls to point to a new location or simply provide the data as a string.
-param pubkey string
-param passadmin string 
-
-var script64 = loadFileAsBase64('./bootstrapscript.sh') // sample boostrap script. Adjust corresponding script to adjust Userdata or provide new path.
-
-resource vmLinuxwebserver 'Microsoft.Compute/virtualMachines@2021-11-01' = {
-  name: vm_linwebserver_name
-  location: location
-  zones: [
-    '2'
-  ]
-  properties: {
-    userData: script64
-    hardwareProfile: {
-      vmSize: 'Standard_B1s'
-    }
-    storageProfile: {
-      imageReference: {
-        publisher: 'canonical'
-        offer: '0001-com-ubuntu-server-impish'
-        sku: '21_10-gen2'
-        version: 'latest'
-      }
-      osDisk: {
-        osType: 'Linux'
-        createOption: 'FromImage'
-        caching: 'ReadWrite'
-        managedDisk: {
-          diskEncryptionSet: {
-            id: diskencryptId
-          }
-          storageAccountType: 'StandardSSD_LRS'
-        }
-        deleteOption: 'Delete'
-      }
-      dataDisks: []
-    }
-    osProfile: {
-      computerName: vm_linwebserver_name
-      adminUsername: '${vm_linwebserver_name}user'
-      adminPassword: null
-      linuxConfiguration: {
-        disablePasswordAuthentication: true
-        ssh: {
-          publicKeys: [
-            {
-              keyData: pubkey
-              path: '/home/${vm_linwebserver_name}user/.ssh/authorized_keys'
-            }
-          ]
-        }
-        provisionVMAgent: true
-        patchSettings: {
-          patchMode: 'ImageDefault'
-          assessmentMode: 'ImageDefault'
-        }
-      }
-      secrets: []
-      allowExtensionOperations: true
-
-    }
-    networkProfile: {
-      networkInterfaces: [
-        {
-          id: nic_id_webserver
-          properties: {
-            deleteOption: 'Detach'
-          }
-        }
-      ]
-    }
-    diagnosticsProfile: {
-      bootDiagnostics: {
-        enabled: true
-      }
-    }
-  }
-}
-
-resource vmAdmin_windows 'Microsoft.Compute/virtualMachines@2021-11-01' = {
-  name: vm_windowsadmin_name
-  location: location
-  zones: [
-    '2'
-  ]
-  properties: {
-    hardwareProfile: {
-      vmSize: 'Standard_B1s'
-    }
-    storageProfile: {
-      imageReference: {
-        publisher: 'MicrosoftWindowsServer'
-        offer: 'WindowsServer'
-        sku: '2022-datacenter-azure-edition'
-        version: 'latest'
-      }
-      osDisk: {
-        osType: 'Windows'
-        createOption: 'FromImage'
-        caching: 'ReadWrite'
-        managedDisk: {
-          diskEncryptionSet: {
-            id: diskencryptId
-          }
-          storageAccountType: 'StandardSSD_LRS'
-        }
-        deleteOption: 'Delete'
-      }
-      dataDisks: []
-    }
-    osProfile: {
-      computerName: vm_windowsadmin_name
-      adminUsername: '${vm_windowsadmin_name}user'
-      adminPassword: passadmin
-      windowsConfiguration: {
-        provisionVMAgent: true
-        enableAutomaticUpdates: true
-        patchSettings: {
-          patchMode: 'AutomaticByOS'
-          assessmentMode: 'ImageDefault'
-          enableHotpatching: false
-        }
-      }
-      secrets: []
-      allowExtensionOperations: true
-
-    }
-    networkProfile: {
-      networkInterfaces: [
-        {
-          id: nic_id_admin
-          properties: {
-            deleteOption: 'Detach'
-          }
-        }
-      ]
-    }
-    diagnosticsProfile: {
-      bootDiagnostics: {
-        enabled: true
-      }
-    }
-  }
-}
-output vmWebApp_ID_out string = vmLinuxwebserver.id
-output vm_web_NAME_out string = vmLinuxwebserver.name
-
-output vm_admin_ID_out string = vmAdmin_windows.id
-output vm_admin_NAME_out string = vmAdmin_windows.name
-
+output nicadminId string = nic_winadmin.id
+output vnetAdminId string = vnetAdmin.id
+output adminvnetname string = vnetAdmin.name
+output adminpipId string =  pubipAdminserver.id
+output adminPipname string =  pubipAdminserver.id
+output NicAdminname string = nic_winadmin.name
+output adminSubnetname string = AdminSubnet.name
+output adminSubnetId string = AdminSubnet.id

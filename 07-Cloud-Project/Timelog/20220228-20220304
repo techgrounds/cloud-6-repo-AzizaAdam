@@ -1,0 +1,67 @@
+## # Log [28-03-22]
+ 
+## Dagverslag (1 zin)
+working on the documentation, I have my modules ready for MVP1.1
+ 
+## Obstakels
+NA 
+ 
+## Oplossingen
+NA
+## Learnings
+Leanrt how add required docs.
+
+
+
+## Log [29-03-22]
+ 
+## Dagverslag (1 zin)
+Same as yesterday updaing my dosc.
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+NA
+
+## Learnings
+How to update docs and keep tracking changes
+ 
+
+## Log [30-03-22]
+ 
+## Dagverslag (1 zin)
+Updating GitHub
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+NA
+## Learnings
+Leanrt howto use gitignore to hide the unrelated bicpe files and secret info
+ 
+
+## Log [31-03-22]
+ 
+## Dagverslag (1 zin)
+Try to connect to the windows server using RDP connection
+ 
+## Obstakels
+username and password were not accepted
+ 
+## Oplossingen
+
+## Learnings
+
+
+
+## Log [01-03-22]
+
+## Dagverslag (1 zin)
+Tried to log into the webserver vmss using self signed certificate.
+## Obstakels
+Getting errors
+## Oplossingen
+Trials and errors
+## Learnings
