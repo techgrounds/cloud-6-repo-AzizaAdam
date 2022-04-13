@@ -1,35 +1,7 @@
-## Log [28-02-22]
+## Log [28-03-22]
  
 ## Dagverslag (1 zin)
-Start building virtual machine module.
- 
-## Obstakels
-SSH key generation.
- 
-## Oplossingen
- I use microsoft documentation.
-## Learnings
-I understood a bit how it works.
- 
-
-## Log [01-03-22]
- 
-## Dagverslag (1 zin)
-Deoplying webApp server Linux
- 
-## Obstakels
-Apache server automation.
- 
-## Oplossingen
- I used bootscript to be added to custom data during depolyment of  the server.
-## Learnings
-I understood how to run Apache server in Linux VM.
- 
-
-## Log [02-03-22]
- 
-## Dagverslag (1 zin)
-Deoplying Windows 2022 data center for the admin server.
+adjust modules for version 1.0 and 1.1
  
 ## Obstakels
 NA
@@ -37,32 +9,47 @@ NA
 ## Oplossingen
  NA
 ## Learnings
-I understood how to depoly Windows VM.
+I understood how it works.
+ 
 
-## Log [03-03-22]
+## Log [29-03-22]
  
 ## Dagverslag (1 zin)
-Adding recovervault and backup plan to the VMs
+Deoplying my version 1.1 I get errors with the vnet module
  
 ## Obstakels
-NA
+errors related to deploying many interrelated resources in one module
  
 ## Oplossingen
-NA
+ I broke the vnet module into vnet and peering modules
 ## Learnings
-I understood how to depoly recovery vault and backup plan with protected items and containers.
+I understood that even u have a good script it may not run just bcz of too much related resources like nic, ip, nsg, peering all depends on subnets so breaking down modules into small easy digestable to the resource manager will help avoiding this errors.
+ 
 
-
-
-## Log [04-03-22]
+## Log [31-03-22]
  
 ## Dagverslag (1 zin)
-Getting errors when depolying my services vnet encrytpion and VMs.
+Deoplying version1.1 and try to login admin server
  
 ## Obstakels
-Authentication problem and dependencies problem.
+connectivty issues
  
 ## Oplossingen
-Trials and errors
+ adjust the admin trust IP address to myh ip then it works
 ## Learnings
-Still trying to figureout what went wrong.
+I understood how to rdp into the admin server
+
+## Log [01-04-22]
+ 
+## Dagverslag (1 zin)
+Deoplying version1.1 and try to login webserver
+ 
+## Obstakels
+private ssh key was not correctly saved 
+ 
+## Oplossingen
+Generated new keys and updated the VMs
+## Learnings
+I understood how to ssh into the linux webserver from the admin Windows server.
+
+

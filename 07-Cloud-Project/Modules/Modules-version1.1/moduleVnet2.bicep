@@ -7,7 +7,7 @@ param nsgAdmin_name string = 'admin_nsg_${environment}'
 param pubipAdmin_name string = 'admin_ip_${environment}'
 param nicAdmin_name string = 'admin_nic_${environment}'
 param virtualNetworks_vmss_name string = 'vnet_vmss'
-param publicIPAddresses_AGW_name string = 'appGwPip'
+
 
 
 // virtual network AppGateway- Appserver (vmss)
@@ -23,7 +23,9 @@ resource virtualNetworks_vmss 'Microsoft.Network/virtualNetworks@2020-11-01' = {
     enableDdosProtection: false
   }
 }
-
+output VnetAdressSpace object = virtualNetworks_vmss.properties.addressSpace
+output VnetVmssId string = virtualNetworks_vmss.id
+output VnetVmssName string = virtualNetworks_vmss.name
 
 param AGWsubnet_name string = 'appGWSubnet'
 resource virtualNetworks_appGwSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
@@ -34,14 +36,6 @@ resource virtualNetworks_appGwSubnet 'Microsoft.Network/virtualNetworks/subnets@
     networkSecurityGroup: {
       id: nsgAppgateway.id
     }
-    serviceEndpoints: [
-      {
-        service: 'Microsoft.KeyVault'
-        locations: [
-          '*'
-        ]
-      }
-    ]
     delegations: []
     privateEndpointNetworkPolicies: 'Enabled'
     privateLinkServiceNetworkPolicies: 'Enabled'
@@ -61,7 +55,18 @@ resource virtualNetworks_vmssSubnet 'Microsoft.Network/virtualNetworks/subnets@2
     }
   }
 
+//adding Firewall subnet
+//param FirewallSubnet_name string = 'AzureFirewallSubnet'
 
+//resource virtualNetworks_FirewallSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
+ // parent: virtualNetworks_vmss
+  //name: FirewallSubnet_name
+  //properties: {
+   // addressPrefix: '10.0.3.0/24'
+   // }
+  //}
+//output FirewallSubnetId string = virtualNetworks_FirewallSubnet.id
+//output FirewallSubnetName string = virtualNetworks_FirewallSubnet.name
 // adding nic for the vmss webserver
 param nicWebserver_name string = 'webserver_nic_${environment}'
 
@@ -92,18 +97,6 @@ resource nic_webserver 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 }
 
 output nicwebserver_out string = nic_webserver.id
-
-// adding public IP to the application gateway
-resource publicIPAddresses_AGW 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
-  name: publicIPAddresses_AGW_name
-  location: location
-  sku: {
-    name: 'Standard'
-  }
-  properties: {
-    publicIPAllocationMethod: 'Static'
-  }
-}
 
 // NSG webApp server inbound rules
 param nsgwebSSH_rules_name string ='nsg_webrules_SHH_${environment}'
@@ -310,6 +303,7 @@ resource AdminSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
 }
 
 // nsgroups and rules follow:
+// in google search what is my IP address then add that to the sourceAddressPrefixes so that you will be allowed to RDP the admin server.
 resource nsgAdmin 'Microsoft.Network/networkSecurityGroups@2020-11-01' = {
   name: nsgAdmin_name
   location: location
@@ -328,7 +322,7 @@ resource nsgAdmin 'Microsoft.Network/networkSecurityGroups@2020-11-01' = {
           sourcePortRanges: []
           destinationPortRanges: []
           sourceAddressPrefixes: [
-            '192.168.2.7'
+            '195.181.172.220'
           ]
         
           destinationAddressPrefixes: []
@@ -394,8 +388,6 @@ output vnetvmssId string = virtualNetworks_vmss.id
 output vnetvmssname string = virtualNetworks_vmss.name
 output adminpipId string =  pubipAdminserver.id
 output adminPipname string =  pubipAdminserver.id
-output AGWPipId string = publicIPAddresses_AGW.id
-output AGWPipname string = publicIPAddresses_AGW.name
 output NicAdminname string = nic_winadmin.name
 output nicadminId_out string = nic_winadmin.id
 output adminSubnetname string = AdminSubnet.name
