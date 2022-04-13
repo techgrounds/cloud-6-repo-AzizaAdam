@@ -1,0 +1,55 @@
+## Log [28-03-22]
+ 
+## Dagverslag (1 zin)
+adjust modules for version 1.0 and 1.1
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ NA
+## Learnings
+I understood how it works.
+ 
+
+## Log [29-03-22]
+ 
+## Dagverslag (1 zin)
+Deoplying my version 1.1 I get errors with the vnet module
+ 
+## Obstakels
+errors related to deploying many interrelated resources in one module
+ 
+## Oplossingen
+ I broke the vnet module into vnet and peering modules
+## Learnings
+I understood that even u have a good script it may not run just bcz of too much related resources like nic, ip, nsg, peering all depends on subnets so breaking down modules into small easy digestable to the resource manager will help avoiding this errors.
+ 
+
+## Log [31-03-22]
+ 
+## Dagverslag (1 zin)
+Deoplying version1.1 and try to login admin server
+ 
+## Obstakels
+connectivty issues
+ 
+## Oplossingen
+ adjust the admin trust IP address to myh ip then it works
+## Learnings
+I understood how to rdp into the admin server
+
+## Log [01-04-22]
+ 
+## Dagverslag (1 zin)
+Deoplying version1.1 and try to login webserver
+ 
+## Obstakels
+private ssh key was not correctly saved 
+ 
+## Oplossingen
+Generated new keys and updated the VMs
+## Learnings
+I understood how to ssh into the linux webserver from the admin Windows server.
+
+

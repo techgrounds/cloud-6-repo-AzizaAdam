@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "tht13.python"
+    ]
+}
+name = "aziza"
+age =45
+print(name, age)

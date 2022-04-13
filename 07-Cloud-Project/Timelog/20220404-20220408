@@ -1,0 +1,68 @@
+## # Log [21-03-22]
+ 
+## Dagverslag (1 zin)
+working on the errors I get from the application gateway
+ 
+## Obstakels
+redirection of http to secure https port protocol 
+ 
+## Oplossingen
+I made self signed certificate to authinticate to the application gateway
+## Learnings
+Leanrt how to make self signed certificate using openssl and added to my bicep file as base64 file
+
+
+
+## Log [22-03-22]
+ 
+## Dagverslag (1 zin)
+working on my vmss bicep file
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+NA
+
+## Learnings
+I understood how to script vm autoscalesets
+ 
+
+## Log [23-03-22]
+ 
+## Dagverslag (1 zin)
+Dedploying vmss and application gateway through bicep script
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+NA
+## Learnings
+My script is validated
+ 
+
+## Log [24-03-22]
+ 
+## Dagverslag (1 zin)
+Making modules to version 1.1 and main bicep file
+ 
+## Obstakels
+dependances
+ 
+## Oplossingen
+ spilt modules to shorter ones to avoid circular dependancies
+## Learnings
+I learnt how modules work
+
+
+## Log [25-03-22]
+
+## Dagverslag (1 zin)
+validation of modules
+## Obstakels
+Getting errors
+## Oplossingen
+Trials and errors
+## Learnings
+My modules are working :0

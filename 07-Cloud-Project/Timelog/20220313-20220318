@@ -1,0 +1,66 @@
+## Log [13-03-22]
+ 
+## Dagverslag (1 zin)
+Start studying the new changes to version 1.0 to prepare version 1.1 (application gateway and vmss)
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ I use microsoft documentation.
+## Learnings
+I understood the application gateway and the autoscalesets
+ 
+
+## Log [14-03-22]
+ 
+## Dagverslag (1 zin)
+Dedploying vmss and application gateway through azure portal
+ 
+## Obstakels
+vnet confilct 
+ 
+## Oplossingen
+ I tried many tricks and asked my peers but somehow there is a problem to creat a nic in the application gateway subnet
+## Learnings
+How to deploy application gateway and vmss via azure portal
+ 
+
+## Log [15-03-22]
+ 
+## Dagverslag (1 zin)
+Dedploying vmss and application gateway through azure cli
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+ NA
+## Learnings
+It working through cli unlike the portal
+
+## Log [16-03-22]
+ 
+## Dagverslag (1 zin)
+decompile the json file I downloaded from yesterday to make a bicep IaC file
+ 
+## Obstakels
+NA
+ 
+## Oplossingen
+NA
+## Learnings
+I feel better working with bicep this time so the effort of the previous 3 weeks are paying now.
+
+
+
+## Log [17-03-22]
+ try to deploy my vmss-AGW bicep file
+## Dagverslag (1 zin)
+ 
+## Obstakels
+Getting errors when depolying my bicep file related to the addresses backendpool 
+## Oplossingen
+Trials and errors
+## Learnings
+Still trying to figureout what went wrong.
